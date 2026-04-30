@@ -3,7 +3,7 @@ const Korban = require('../models/Korban');
 const Posko = require('../models/Posko');
 const Relawan = require('../models/Relawan');
 const Laporan = require('../models/Laporan');
-const { sequelize } = require('../config/database');
+const sequelize = require('../config/database');
 
 exports.getRingkasan = async (req, res) => {
   try {

@@ -16,7 +16,7 @@ exports.getLogistikByBencana = async (req, res) => {
 
 exports.getStokByBencana = async (req, res) => {
   try {
-    const { sequelize } = require('../config/database');
+    const sequelize = require('../config/database');
     const stok = await Logistik.findAll({
       where: { bencanaId: req.params.bencanaId },
       attributes: [
