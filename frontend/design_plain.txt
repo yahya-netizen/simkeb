@@ -1,0 +1,911 @@
+PERANCANGAN DAN IMPLEMENTASI SISTEM INFORMASI MANAJEMEN KEBENCANAAN
+
+[Image]	
+
+## KELOMPOK 7 KELAS AAB
+
+1
+
+247006111023
+
+Dara Adzkia
+
+2
+
+247006111032
+
+Mohamad Yahya Al Fadil
+
+3
+
+247006111058
+
+Farid Dhiya Fairuz
+
+PROGRAM STUDI INFORMATIKA
+
+FAKULTAS TEKNIK
+
+UNIVERSITAS SILIWANGI
+
+2026
+
+# <a id="_xq8lvgduuw3"></a>DAFTAR ISI
+
+[__DAFTAR ISI	ii__](#_xq8lvgduuw3)
+
+[__DAFTAR GAMBAR	iii__](#_nk7oq41k3ul1)
+
+[__DAFTAR TABEL	iii__](#_o49a12nwb901)
+
+[__1\.__	](#_g03jd5goutcu)__DESKRIPSI PROYEK	1__
+
+[__1\.1\.__	](#_6d6k9wsbj1uz)__Latar Belakang Masalah	1__
+
+[__1\.2\.__	](#_paoypg1amhkw)__Permasalahan	1__
+
+[__1\.3\.__	](#_a46uul1zniff)__Tujuan Sistem	1__
+
+[__1\.4\.__	](#_j5f0opgmlr69)__Manfaat Sistem	1__
+
+[__2\.__	](#_bgy2mdr89wi4)__ANALISIS KEBUTUHAN SISTEM	1__
+
+[__2\.1\.__	](#_efu48b7epra7)__Kebutuhan Fungsional	1__
+
+[__2\.2\.__	](#_b42n63xojzv)__Kebutuhan Non\-Fungsional	1__
+
+[__2\.3\.__	](#_10cjguduhxsw)__Spesifikasi Hardware dan Software	1__
+
+[__2\.4\.__	](#_3ahly5qepnpg)__Proses Bisnis Berjalan	1__
+
+[__2\.5\.__	](#_tk4w021xnc5e)__Proses Bisnis yang Diusulkan	1__
+
+[__2\.6\.__	](#_pq8ayd8f7cdn)__Perbandingan Sistem	1__
+
+[__3\.__	](#_pe6xpiui7w4c)__PERANCANGAN SISTEM INFORMASI	1__
+
+[__3\.1\.__	](#_yerzz4ysw1pi)__Use Case Diagram	1__
+
+[__3\.2\.__	](#_xjylijg021hy)__Class Diagram	1__
+
+[__3\.3\.__	](#_tsdz2xikll1c)__Activity Diagram	1__
+
+[__4\.__	](#_jvna018ipwso)__PENGEMBANGAN SISTEM INFORMASI	1__
+
+[__4\.1\.__	](#_8lur5pcc9erc)__Teknologi yang Digunakan	1__
+
+[__4\.2\.__	](#_di0a4gvsczxm)__Implementasi Sistem	1__
+
+[__4\.3\.__	](#_i4s5ppatuwcy)__Link Sistem dan Database	1__
+
+[__4\.4\.__	](#_sdgfd1ejclgz)__Interface Sistem Informasi \(Mockup\)	1__
+
+[__4\.5\.__	](#_5th0e850tzcy)__Implementasi	1__
+
+[__5\.__	](#_tzvjw1mj2fp6)__PENGUJIAN SISTEM INFORMASI	1__
+
+[__5\.1\.__	](#_m1l4k855eyii)__Metode Pengujian	1__
+
+[__5\.2\.__	](#_m1lp80iw78zx)__Hasil Pengujian	1__
+
+[__5\.3\.__	](#_nz9mshuqyd4c)__Evaluasi Hasil	1__
+
+[__DAFTAR PUSTAKA	2__](#_46e5prncajzc)
+
+# <a id="_nk7oq41k3ul1"></a>DAFTAR GAMBAR
+
+# <a id="_o49a12nwb901"></a>DAFTAR TABEL
+
+# <a id="_g03jd5goutcu"></a>DESKRIPSI PROYEK
+
+## <a id="_6d6k9wsbj1uz"></a>Latar Belakang Masalah
+
+*\[Yahya, 1 April 2026/Progres 1\]*
+
+	Indonesia merupakan negara yang memiliki risiko bencana yang tinggi, [Yulianto dkk\., 2021](https://www.zotero.org/google-docs/?lwpTet) mengutip dari Wardyaningrum bahwa “Kondisi geografis, demografis, sosiologis dan historis Indonesia menjadikan wilayah Indonesia rawan terhadap bencana \(alam, non alam, dan sosial\)”\. Hal tersebut juga dipengaruhi oleh letak geografis Indonesia yang berada dalam wilayah *Ring of Fire *di dukung lokasi Indonesia yang diapit oleh dua samudera dan dua benua serta terletak diatas lempeng*\.*
+
+Tantangan utama dalam penanggulangan bencana adalah lambannya arus informasi antara instansi pemerintah, relawan, dan masyarakat terdampak\. Sistem terpadu yang masih kurang efektif menyebabkan duplikasi data, kesulitan koordinasi logistik, dan keterlambatan penyaluran bantuan\. Selain itu, fase mitigasi dan kesiapsiagaan sering kali diabaikan karena tidak tersedianya sistem yang mampu memetakan risiko bencana secara *real\-time*\.
+
+Sistem Informasi Manajemen Kebencanaan \(SIMKEB\) dirancang sebagai solusi berbasis web yang mengintegrasikan seluruh tahapan siklus bencana, mulai dari mitigasi, kesiapsiagaan, respons tanggap darurat, hingga pemulihan pascabencana\. Sistem ini menghubungkan seluruh pemangku kepentingan, yaitu BNPB, BPBD, pemerintah daerah, relawan, dan masyarakat, dalam satu platform digital yang terpusat\.
+
+## <a id="_paoypg1amhkw"></a> Rumusan Masalah
+
+1. Bagaimana merancang sistem informasi yang mampu mengelola data bencana secara terpadu dan *real\-time*?
+2. Bagaimana sistem dapat memfasilitasi koordinasi antara BNPB, BPBD, relawan, dan masyarakat terdampak bencana?
+3. Bagaimana sistem informasi dapat mendukung pengambilan keputusan cepat dalam situasi darurat bencana?
+4. Bagaimana menyediakan fitur pemetaan risiko dan pelaporan bencana yang mudah diakses oleh masyarakat? 
+
+## <a id="_a46uul1zniff"></a> Tujuan Sistem
+
+1.  Membangun sistem informasi berbasis web yang mengintegrasikan data bencana dari berbagai sumber secara terpadu\.
+2. Memfasilitasi koordinasi distribusi logistik dan bantuan kepada korban secara efisien dan transparan\.
+3. Menyediakan *dashboard* analitik bagi pengambil keputusan \(BNPB/BPBD\) untuk monitoring situasi bencana secara *real\-time*\.
+4. Memberikan akses pelaporan bencana kepada masyarakat melalui antarmuka yang mudah digunakan\.
+
+## <a id="_j5f0opgmlr69"></a> Manfaat Sistem 
+
+1. Sistem mampu menerima laporan bencana secara *real\-time* yang bisa langsung diverifikasi oleh petugas bencana
+2. Sistem mampu mencatat dan mengatur keikutsertaan relawan yang terlibat di lokasi bencana
+3. Sistem memberikan rekomendasi pengambilan keputusan dalam memilih lokasi bencana yang harus diprioritaskan
+4. Masyarakat umum bisa melihat seluruh aktifitas yang ada di lokasi bencana secara transparan
+
+# <a id="_bgy2mdr89wi4"></a>ANALISIS KEBUTUHAN SISTEM
+
+## <a id="_efu48b7epra7"></a> Kebutuhan Fungsional 
+
+// farid \[08 April  2026/progress 1\]
+
+Kebutuhan Fungsional menjelaskan fungsi\-fungsi inti yang harus disediakan oleh sistem agar dapat berjalan sesuai tujuan yang ditetapkan\. Sistem Informasi Manajemen Kebencanaan menggunakan konsep multi\-user dengan empat peran pengguna, yaitu Administrator, Petugas BPBD/BNPB, Relawan, dan Masyarakat Umum\. Mengacu pada penelitian Prayesti, Hadiana, & Umbara \(2020\) mengenai sistem informasi manajemen penanggulangan bencana di Kabupaten Bandung Barat, fitur\-fitur seperti informasi ancaman bencana, bantuan logistik, serta koordinasi antar instansi merupakan komponen penting yang perlu diakomodasi dalam sistem\.
+
+1. Kebutuhan Umum
+2. Sistem dapat menampilkan halaman login untuk pengguna terdaftar\.
+3. Sistem dapat melakukan logout untuk mengakhiri sesi pengguna\.
+4. Sistem dapat menampilkan notifikasi keberhasilan atau kegagalan setiap aksi \(login, simpan data, dsb\.\)\.
+5. Sistem dapat diakses melalui berbagai perangkat \(komputer, handphone, dsb\.\)\.
+6. Kebutuhan Administrator
+7. Sistem dapat mengelola akun pengguna seperti tambah, ubah/edit, hapus, dan atur peran\(role\) pengguna\.
+8. Kebutuhan Petugas BPBD/BNPB
+9. Sistem dapat menampilkan daftar laporan bencana yang masuk dari masyarakat\.
+10. Sistem dapat memverifikasi laporan bencana dan mengubah statusnya \(Dilaporkan → Terverifikasi → Selesai\)\.
+11. Sistem dapat mengelola data kejadian bencana, termasuk jenis, lokasi, dan tingkat keparahan\.
+12. Sistem dapat mengelola data korban dan pengungsi, termasuk jumlah dan kondisi terkini\.
+13. Sistem dapat mengelola data posko pengungsian, termasuk nama posko, kapasitas, dan jumlah pengungsi yang ditampung\.
+14. Sistem dapat mencatat distribusi logistik bantuan, termasuk stok bantuan masuk dan keluar\.
+15. Sistem dapat menampilkan dashboard ringkasan situasi bencana aktif secara real\-time\.
+16. Kebutuhan Relawan
+17. Sistem dapat menerima pendaftaran relawan beserta data keahlian dan ketersediaan\.
+18. Sistem dapat menampilkan daftar penugasan relawan sesuai lokasi bencana yang ditangani\.
+19. Sistem dapat memperbarui status penugasan relawan \(Standby, Bertugas, Selesai\)\.
+20. Kebutuhan Masyarakat Umum
+21. Sistem dapat menerima laporan kejadian bencana dari masyarakat tanpa perlu login, mencakup jenis bencana, lokasi, tingkat keparahan, relawan yang bertugas dan deskripsi singkat\.
+22. Sistem dapat menampilkan nomor ID laporan secara otomatis setelah laporan berhasil dikirim sebagai bukti pelaporan\.
+23. Sistem dapat menampilkan informasi bencana yang sedang aktif secara real\-time tanpa perlu login\.
+
+## <a id="_b42n63xojzv"></a> Kebutuhan Non\-Fungsional
+
+Kebutuhan non\-fungsional menjelaskan standar kualitas sistem di luar fungsi utamanya\. Hakim, Rochimah, & Fatichah \(2019\) menjelaskan bahwa aspek kualitas kebutuhan non\-fungsional merupakan salah satu faktor penting yang berperan dalam kesuksesan pengembangan perangkat lunak, dan sering kali sulit diidentifikasi karena tercampur dengan kebutuhan fungsional\. Dalam konteks SIMKEB yang beroperasi pada situasi darurat, kebutuhan non\-fungsional menjadi faktor yang sangat penting/krusial\.
+
+1. Kinerja \(Performance\)
+2. Sistem dapat merespons setiap permintaan pengguna dalam waktu yang singkat \(kurang dari 3 detik\) pada kondisi jaringan normal\.
+3. Halaman dashboard dapat memuat data terbaru tanpa waktu tunggu yang lama\.
+4. Keamanan \(Security\)
+5. Sistem menggunakan autentikasi berbasis sesi atau token \(JWT\) untuk setiap pengguna yang login\.
+6. Setiap pengguna hanya dapat mengakses fitur sesuai perannya masing\-masing \(role\-based access\)\.
+7. Kata sandi disimpan dalam bentuk terenkripsi \(hashed\)\.
+8. Kemudahan Penggunaan \(Usability\)
+9. Antarmuka sistem dirancang agar dapat digunakan tanpa pelatihan teknis khusus\.
+10. Formulir pelaporan bencana dibuat sesederhana mungkin agar tidak membingungkan pengguna awam\.
+11. Keandalan \(Reliability\)
+12. Sistem harus tetap berjalan dengan stabil selama digunakan dalam satu sesi aktif tanpa crash atau error\.
+13. Sistem dilengkapi dengan pesan kesalahan yang jelas jika terjadi gangguan  \(misalnya koneksi database gagal, dsb\.\)\.
+
+## <a id="_10cjguduhxsw"></a> Spesifikasi Hardware dan Software
+
+  2\.3\.1\. Spesifikasi Hardware Perancangan Dara \[02&09 April 2026/Progress 1\]
+
+Infrastruktur perangkat keras yang dibutuhkan untuk mendukung operasional sistem SIMKEB di sini mengacu pada kebutuhan server yang mampu menangani proses data secara *real\-time*, penyimpanan basis data relasional, serta pengiriman notifikasi secara bersamaan kepada banyak pengguna\. Spesifikasi minimal perangkat keras yang direkomendasikan adalah sebagai berikut\. 
+
+Komponen
+
+Spesifikasi Minimal
+
+Keterangan
+
+Prosesor \(CPU\)
+
+Intel Core i5 Gen 8 / AMD Ryzen 5 atau yang setara
+
+Untuk menjalankan server lokal dan IDE secara bersamaan
+
+Memori \(RAM\)
+
+8 GB
+
+Minimal untuk menjalankan Node\.js, MySQL, dan browser development tools
+
+Penyimpanan \(Storage\)
+
+256 GB SSD
+
+Menyimpan project, dependensi npm, dan database lokal
+
+Sistem Operasi
+
+Windows 10/11, MacOS, atau Ubuntu Linux
+
+Mendukung toolchain pengembangan \(Node\.js, Docker, Git\)
+
+Koneksi Internet
+
+Minimal 10 Mbps
+
+Untuk akses repositori, npm install, dan deployment
+
+Karena SIMKEB merupakan sistem berbasis web yang responsif, pengguna akhir tidak memerlukan perangkat dengan spesifikasi tinggi\. Sistem dapat diakses melalui komputer/laptop maupun perangkat mobile\.
+
+Komponen
+
+Pengguna Desktop
+
+Pengguna Mobile
+
+Perangkat
+
+PC, Laptop, atau Komputer
+
+Android/iOS Smartphone atau Tablet
+
+Prosesor \(CPU\)
+
+Dual Core atau lebih
+
+Quad Core atau lebih
+
+Memori \(RAM\)
+
+Minimal 2 GB
+
+Minimal 2 GB
+
+Penyimpanan
+
+Layar
+
+Minimal resolusi 1024×768 piksel
+
+Minimal 4 inci untuk mendukung tampilan responsif
+
+Browser
+
+Google Chrome, Mozilla Firefox, Microsoft Edge, atau Safari \(versi terbaru\)
+
+Chrome Mobile, Safari Mobile, atau browser bawaan modern
+
+Koneksi Internet
+
+Minimal 2 Mbps
+
+Minimal 2 Mbps \(4G/LTE atau Wi\-Fi\)
+
+Sistem Operasi
+
+Windows 7 ke atas, macOS 10\.12 ke atas, atau Linux
+
+Android 8\.0 ke atas / iOS 12 ke atas
+
+Kamera
+
+Opsional, untuk unggah foto laporan
+
+Disarankan ada untuk foto langsung dari lapangan
+
+2\.3\.2\. Spesifikasi Software Perancangan Dara \[02 April 2026/Progress 1\]
+
+Seluruh komponen perangkat lunak yang digunakan dalam SIMKEB bersifat *open\-source*, sehingga tidak memerlukan lisensi berbayar\. Pemilihan teknologi disesuaikan dengan kebutuhan fungsional setiap lapisan sistem \(layer\), sebagaimana dijabarkan dalam tabel berikut\. \(Masih gambaran kasar\)
+
+Layer 
+
+Komponen
+
+Teknologi
+
+Fungsi
+
+Presentation Layer
+
+Antarmuka Pengguna
+
+[React\.js](http://react.js) \+ Tailwind CSS
+
+Membangun antarmuka pengguna yang responsif dan mobile\-friendly
+
+Application Layer
+
+REST API & Logika Bisnis
+
+[Node\.js](http://node.js) \+ Express\.js
+
+Mengelola alur data dan logika bisnis
+
+Application Layer
+
+Autentikasi & Keamanan
+
+JWT \(JSON Web Token\)
+
+Mengamankan akses dan otorisasi pengguna
+
+Data Layer
+
+Basis Data Relasional
+
+MySQL
+
+Menyimpan seluruh data sistem secara terstruktur
+
+## <a id="_3ahly5qepnpg"></a> Proses Bisnis Berjalan
+
+## <a id="_h5vk1ugumvnn"></a>Perancangan Dara \[02 April 2026/Progress 1\]
+
+Secara kelembagaan, di Indonesia ada BNPB yang telah memiliki beberapa platform digital yang berfungsi sebagai sistem informasi kebencanaan\. Platform\-platform tersebut antara lain:
+
+- Geoportal Data Bencana Indonesia \([gis\.bnpb\.go\.id](http://gis.bnpb.go.id)\)\. Merupakan portal berbasis GIS yang menampilkan peta sebaran bencana per provinsi beserta data dampak bencana dalam bentuk pop\-up informatif\.
+- DIBI \(Data dan Informasi Bencana Indonesia\)\. Merupakan basis data kejadian bencana historis yang dapat difilter berdasarkan jenis bencana, provinsi, dan kabupaten/kota\.
+- InaRISK\. Merupakan aplikasi SIG berbasis web yang interaktif untuk menggambarkan informasi geospasial tentang pengurangan risiko bencana di Indonesia, dan tersedia pula dalam bentuk aplikasi mobile\.
+- Portal Satu Data Bencana Indonesia \([data\.bnpb\.go\.id](http://data.bnpb.go.id)\)\. Merupakan portal yang menyajikan informasi kebencanaan untuk pengurangan risiko bencana, penanganan darurat, rehabilitasi dan rekonstruksi, serta keperluan lain yang berkaitan dengan bidang kebencanaan\.
+
+Meskipun platform\-platform di atas telah tersedia, platform tersebut masih memiliki keterbatasan yang signifikan dalam konteks operasional penanganan bencana secara terpadu\. Uraian kondisi proses bisnis yang saat ini berjalan adalah sebagai berikut\.
+
+1. Tidak tersedia fitur pelaporan bencana berbasis partisipasi publik pada platform yang ada\. Masyarakat ‎yang mengetahui atau terdampak bencana masih mengandalkan jalur konvensional seperti telepon darurat \(Call Center 112\) atau mendatangi kantor BPBD setempat\. Laporan yang masuk kemudian dicatat secara manual oleh petugas sebelum diunggah ke sistem DIBI, sehingga terdapat jeda waktu yang cukup signifikan antara kejadian dan tersedianya data di sistem\.
+2. ‎Platform yang tersedia saat ini dirancang lebih sebagai portal data dan visualisasi GIS bagi kalangan teknis, bukan sebagai sistem operasional yang dapat digunakan secara langsung di lapangan\. Tampilan antarmuka yang kompleks dan tidak intuitif menyulitkan penggunaan oleh petugas lapangan, relawan, maupun masyarakat umum yang tidak memiliki latar belakang teknis\.
+3. ‎Platform BNPB yang ada hanya mencakup fungsi visualisasi data dan penyimpanan rekap historis\. Tidak tersedia modul untuk manajemen logistik distribusi bantuan, pengelolaan data pengungsian dan kapasitas posko, pendataan dan penugasan relawan, maupun koordinasi antar instansi secara real\-time dalam satu platform yang sama\.
+4. ‎Koordinasi antara BNPB, BPBD provinsi/kabupaten, pemerintah daerah, dan relawan masih sangat bergantung pada komunikasi verbal dan dokumen fisik\. Tidak adanya sistem terpadu yang menghubungkan seluruh pemangku kepentingan menyebabkan duplikasi data, miskomunikasi dalam distribusi bantuan, dan keterlambatan pengambilan keputusan di tingkat lapangan\.
+5. ‎Pencatatan stok bantuan dan distribusi logistik dilakukan secara mandiri oleh masing\-masing gudang atau posko menggunakan dokumen fisik maupun spreadsheet yang tidak terhubung antar lokasi\. Kondisi serupa terjadi pada data pengungsian, di mana jumlah pengungsi dan kapasitas posko belum terpantau secara terpusat dan real\-time\.
+
+## <a id="_tk4w021xnc5e"></a> Proses Bisnis yang Diusulkan
+
+## <a id="_dd9uoc6ru4zc"></a>Perancangan Dara \[02 April 2026/Progress 1\]
+
+Sistem Informasi Manajemen Kebencanaan \(SIMKEB\) ‎diusulkan bukan untuk menggantikan platform BNPB yang telah ada, melainkan untuk melengkapi dan mengintegrasikan celah\-celah fungsional yang belum tercakup, khususnya pada dimensi operasional, partisipasi publik, dan koordinasi antar lembaga secara real\-time\. Sistem ini dirancang dengan antarmuka yang jauh lebih ramah pengguna sehingga dapat dioperasikan secara langsung oleh petugas lapangan, relawan, maupun masyarakat umum\. Berikut adalah alur proses bisnis yang diusulkan\.
+
+‎1\. Pelaporan Bencana oleh Masyarakat
+
+‎Masyarakat dapat melaporkan bencana secara langsung melalui antarmuka web SIMKEB tanpa perlu login\. Formulir pelaporan mencakup jenis bencana, lokasi bencana,, tingkat keparahan, foto, dan deskripsi kondisi lapangan\. Setelah formulir dikirimkan, sistem secara otomatis menghasilkan nomor ID pelaporan dan meneruskan notifikasi kepada petugas BPBD setempat melalui push notification dan email\.
+
+‎2\. Verifikasi dan Aktivasi Data Bencana
+
+‎Petugas BPBD menerima notifikasi laporan dan melakukan verifikasi langsung di dalam sistem\. Apabila laporan dinyatakan valid, status bencana diubah menjadi "Terverifikasi/Aktif" dan titik bencana secara otomatis muncul pada peta interaktif yang dapat dipantau oleh seluruh pemangku kepentingan\. Apabila laporan tidak valid, penolakan beserta alasannya disampaikan kembali kepada pelapor melalui sistem\.
+
+‎3\. Pemantauan Situasi Melalui Dashboard Real\-Time
+
+‎Seluruh data bencana yang telah terverifikasi teragregasi secara otomatis pada dashboard utama yang menampilkan jumlah bencana aktif, total pengungsi, jumlah posko, dan jumlah relawan aktif\. Dashboard ini dirancang dengan antarmuka yang bersih dan intuitif, sehingga dapat dipahami tanpa memerlukan keahlian teknis khusus\.
+
+‎4\. Pengelolaan Logistik Terintegrasi
+
+‎Petugas logistik menginput data bantuan yang masuk ke dalam sistem, dan stok gudang diperbarui secara otomatis\. Saat distribusi dilakukan, petugas membuat surat jalan digital dengan memilih bencana, posko tujuan, dan item yang disalurkan\. Sistem memeriksa ketersediaan stok secara otomatis dan memberikan peringatan jika stok tidak mencukupi\. Setelah distribusi dikonfirmasi oleh posko penerima, rekap distribusi langsung tersedia di dashboard\.
+
+‎5\. Manajemen Pengungsian dan Relawan
+
+‎Data posko pengungsian, kapasitas, dan jumlah pengungsi dikelola secara terpusat dan divisualisasikan pada peta interaktif\. Penugasan relawan dilakukan melalui sistem dengan mencatat keahlian, status penugasan, dan lokasi bencana yang ditangani, sehingga penyebaran relawan dapat dioptimalkan sesuai kebutuhan lapangan secara terukur\.
+
+‎6\. Pelaporan dan Ekspor Data
+
+‎Seluruh data dari seluruh modul terangkum secara otomatis dalam dashboard analitik dan dapat diekspor ke format PDF atau Excel untuk keperluan pelaporan resmi dan pengambilan kebijakan\.
+
+## <a id="_pq8ayd8f7cdn"></a> Perbandingan Sistem
+
+Perancangan Dara \[09 April 2026/Progress 1\]
+
+Platform yang tersedia saat ini umumnya bersifat read\-only \(hanya dapat dibaca\) dan lebih berorientasi pada visualisasi data historis serta peta risiko semata, sehingga belum berfungsi sebagai sistem operasional aktif yang dapat digunakan secara langsung di lapangan\. Selain itu, belum tersedia platform yang menyediakan fitur pelaporan publik, manajemen logistik, serta pengelolaan pengungsian yang dapat diakses dan diinput secara langsung oleh masyarakat\.
+
+Tabel berikut menyajikan perbandingan antara sistem yang berjalan di BNPB dengan sistem yang diusulkan melalui SIMKEB\.
+
+Aspek
+
+Sistem Berjalan
+
+Sistem yang Diusulkan
+
+Platform
+
+gis\.bnpb\.go\.id, DIBI, InaRISK, data\.bnpb\.go\.id \(tersedia namun terpisah\-pisah\)
+
+Satu platform terpadu yang mencakup seluruh fungsi operasional kebencanaan
+
+Antarmuka Pengguna
+
+Kompleks dan tidak ramah bagi pengakses awam\.
+
+Dirancang *clean*, intuitif, dan *mobile\-friendly*\. Dapat digunakan tanpa keahlian teknis khusus
+
+Data Historis 
+
+DIBI mencakup data sejak tahun 1815, tetapi beberapa tidak terekap secara *online*
+
+Data bencana tersimpan dan dapat direkap setiap saat
+
+Pelaporan Bencana oleh Publik
+
+Tidak tersedia\. Tidak ada formulir pelaporan; masyarakat harus menghubungi Call Center 112 atau mendatangi kantor BPBD
+
+Tersedia formulir pelaporan digital tanpa *login *yang dapat diakses kapan saja dan di mana saja
+
+Manajemen Logistik
+
+Tidak tersedia di platform digital\. Pengelolaan logistik dilakukan manual atau terpisah dari sistem GIS
+
+Tersedia\. Modul terintegrasi untuk input stok, validasi ketersediaan, distribusi, dan rekap otomatis\.\.
+
+Dashboard Operasional Real\-Time
+
+Tidak tersedia\. Web hanya menampilkan data historis, bukan situasi aktif di lapangan\.
+
+Tersedia\. Dashboard menampilkan jumlah bencana aktif, total pengungsi, posko, dan relawan secara langsung
+
+Teknologi Platform
+
+Menggunakan ArcGIS \(Esri\) yang berbayar dan bergantung pada lisensi pihak ketiga
+
+React\.js \+ Node\.js \+ MySQL
+
+# <a id="_vj6jvol9v6r9"></a>
+
+# <a id="_pe6xpiui7w4c"></a>PERANCANGAN SISTEM INFORMASI
+
+## <a id="_yerzz4ysw1pi"></a> Use Case Diagram
+
+//Yahya\[Progres 2: 15\-16/04/2026\]
+
+Sistem Informasi Bencana ini mengelola data bencana yang dikelola oleh Petugas Bencana dan Relawan yang ditunjukan oleh gambar berikut:
+
+[Image]
+
+1. Masyarakat Umum
+
+Masyarakat merupakan aktor eksternal yang dapat mengakses fitur\-fitur tanpa perlu melalui proses autentikasi \(login\) untuk mempercepat respons saat situasi darurat yang dapat melakukan hal berikut:
+
+- Fitur Lapor Bencana
+
+Masyarakat dapat mengirimkan laporan kejadian bencana yang mencakup detail jenis bencana, lokasi \(koordinat/peta\), tingkat keparahan, dan lampiran deskripsi\. Setelah laporan dikirim, sistem secara otomatis menerbitkan Nomor ID Laporan sebagai bukti pelaporan\.
+
+- Lihat Informasi Bencana Real\-Time
+
+Masyarakat dapat mengakses peta atau daftar informasi bencana yang sedang aktif secara *real\-time* untuk meningkatkan kewaspadaan terhadap situasi sekitar\.
+
+### <a id="_bh3jjevyzbm7"></a>Petugas BPBD/BNPB
+
+### <a id="_20yu514ef3ew"></a>Petugas merupakan pengelola data lapangan yang bertanggung jawab atas validitas informasi dan distribusi sumber daya\. Hal yang dapat dilakukan:
+
+- Login & Logout: Melakukan autentikasi untuk masuk ke hak akses petugas menggunakan kredensial yang terdaftar\.
+- Verifikasi dan Validasi Laporan: Memeriksa laporan yang masuk dari masyarakat untuk memastikan kebenaran data, kemudian mengubah status laporan \(laporkan masuk→ verifikasi → Selesai\)\.
+- Manajemen Data Bencana \(Data Bencana, Korban, & Posko\): Petugas memiliki wewenang penuh untuk memperbarui data kejadian bencana, mencatat jumlah korban \(meninggal, luka, pengungsi\), serta mengelola kapasitas dan ketersediaan posko pengungsian\.
+- Kelola Distribusi Logistik: Mencatat alur masuk dan keluar bantuan logistik agar distribusi bantuan terpantau secara transparan dan tepat sasaran\.
+- Lihat Dashboard Real\-Time: Memantau ringkasan situasi bencana melalui visualisasi data untuk mendukung pengambilan keputusan yang cepat\.
+
+### <a id="_qlfaqz4467b1"></a>Relawan Bencana
+
+### <a id="_s4znct3yjib"></a>Relawan merupakan aktor pendukung yang bertugas membantu penanganan di titik lokasi tertentu\. Hal yang dilakukan:
+
+- Daftar Relawan: Individu yang ingin berkontribusi dapat mendaftarkan diri dengan mengisi data keahlian \(medis, evakuasi, logistik, dll\) dan ketersediaan waktu\.
+- Lihat Tugas & Update Status: Relawan yang telah terverifikasi dapat melihat daftar penugasan berdasarkan lokasi\. Mereka berkewajiban memperbarui status penugasan mereka \(misal: *Standby* → Bertugas → Selesai\) agar petugas pusat mengetahui posisi personel di lapangan\.
+
+1. Administrator
+
+Administrator berfokus pada pemeliharaan data pengguna dan keamanan sistem secara menyeluruh\. Admin dapat melakukan:
+
+- Kelola Akun Pengguna
+
+Admin bertanggung jawab penuh dalam pembuatan akun baru, pengaturan peran \(*Role\-Based Access Control*\), reset kata sandi, hingga penghapusan akun pengguna yang sudah tidak aktif\. Admin memastikan bahwa setiap pengguna hanya dapat mengakses fitur yang sesuai dengan tugasnya\.
+
+## <a id="_xjylijg021hy"></a> Class Diagram
+
+	\[Yahya: 16 April 2026 \- Progress 2\]
+
+Pengembangan Sitem Informasi ini diilustrasikan menggunakan Class Diagram berikut\.
+
+[Image]
+
+### <a id="_94zpmx1vpo3k"></a>__Struktur Kelas Utama__
+
+#### <a id="_s9ieg8e26v06"></a>1\. Admin
+
+Atribut:
+
+- idAdmin: Integer
+- nama: String
+- email: String
+- telepon: String
+- password: String
+
+Kelas yang merepresentasikan administrator sistem yang mengelola pengguna dan keamanan sistem\.
+
+#### <a id="_7x50udhfmiqn"></a>2\. User \(Parent Class\)
+
+Atribut:
+
+- idUser: Integer
+- nama: String
+- email: String
+- password: String
+- alamat: String
+- noTelepon: String
+
+Method:
+
+- setUser\(\): void
+
+Kelas dasar untuk semua pengguna sistem\. Merupakan parent class dari Relawan, Masyarakat, dan Petugas\.
+
+#### <a id="_h9bgpm508k1v"></a>3\. Relawan \(Child of User\)
+
+Atribut:
+
+- noIdentitas: String
+- keahlian: String
+- statusAktif: Boolean
+- tglDaftar: Date
+
+Method:
+
+- getStatus\(\): String
+
+Merepresentasikan relawan yang terdaftar dengan keahlian spesifik dan status aktivasi\.
+
+#### <a id="_kvkrawmgffap"></a>4\. Masyarakat \(Child of User\)
+
+Atribut:
+
+- noIdentitas: String
+- tglDaftar: Date
+
+Method:
+
+- reportIncident\(\): void
+
+Merepresentasikan masyarakat umum yang dapat melaporkan bencana ke sistem\.
+
+#### <a id="_171cjhopzolt"></a>5\. Petugas \(Child of User\)
+
+Atribut:
+
+- noPegawai: String
+- nomorInduk: String
+- departemen: String
+
+Method:
+
+- verifyReport\(\): void
+
+Merepresentasikan petugas BPBD/BNPB yang memverifikasi laporan bencana\. Memiliki cardinality 0\.\.\* \(satu petugas dapat mengelola banyak laporan\)\.
+
+#### <a id="_limumnpql1y2"></a>6\. Laporan
+
+Atribut:
+
+- idLaporan: Integer
+- deskripsi: String
+- lokasi: String
+- tingkatKeparahan: String
+- status: String
+- foto: String
+
+Method:
+
+- updateStatus\(\): void
+
+Merepresentasikan laporan bencana yang diajukan oleh Masyarakat\. Memiliki hubungan dengan Bencana dan Petugas untuk verifikasi\.
+
+#### <a id="_k7ph5rhoi3j7"></a>7\. Bencana
+
+Atribut:
+
+- idBencana: Integer
+- nama\_bencana: String
+- deskripsi: String
+- tingkat\_keparahan: String
+- lokasi: String
+- tanggal: Date
+
+Method:
+
+- getStatusBencana\(\): String
+
+Merepresentasikan kejadian bencana yang dicatat dalam sistem\. Terkait dengan Laporan, Korban, Logistik, dan Posko\.
+
+#### <a id="_4jp9z0wololr"></a>8\. Korban
+
+Atribut:
+
+- idKorban: Integer
+- jumlah\_meninggal: Integer
+- jumlah\_luka: Integer
+
+Method:
+
+- getJumlahKorban\(\): Integer
+
+Merepresentasikan data korban dari suatu bencana\. Memiliki relasi dengan Bencana \(1\.\.\* korban untuk setiap bencana\)\.
+
+#### <a id="_qbg4zon9fvhz"></a>9\. Logistik
+
+Atribut:
+
+- idLogistik: Integer
+- jumlah\_penganggur: Integer
+- jumlah\_luka: Integer
+- jumlah\_hilang: Integer
+- jenis: String
+- tipe: String
+- status: String
+
+Method:
+
+Merepresentasikan bantuan logistik yang didistribusikan\. Terhubung dengan Bencana untuk pengelolaan sumber daya\.
+
+#### <a id="_3udmkb1ynn6f"></a>10\. Posko
+
+Atribut:
+
+- idPosko: Integer
+- lokasi: String
+- kapasitas: Integer
+
+Method:
+
+- updateKapasitas\(\): void
+
+Merepresentasikan lokasi posko pengungsian untuk menampung korban bencana\. Memiliki relasi dengan Bencana\.
+
+## <a id="_tsdz2xikll1c"></a> Activity Diagram
+
+Alur penggunaan sistem informasi ini digambarkan oleh activity diagram berikut:
+
+[Image]
+
+#### <a id="_w5bhspc1p1w1"></a>1\. Activity Diagram: Lapor Bencana
+
+Aktor: Masyarakat & Sistem 
+
+Diagram ini menggambarkan alur pelaporan bencana oleh masyarakat:
+
+1. Buka Aplikasi — Pengguna membuka aplikasi\.
+2. Input NIM & Password — Pengguna memasukkan kredensial login\.
+3. Verifikasi Login — Sistem memverifikasi data login\.
+	- Tidak berhasil → Kembali ke halaman pilih menu Lapor Bencana\.
+	- Berhasil → Sistem menampilkan Form Lapor Bencana\.
+4. Isi Data — Pengguna mengisi jenis bencana, lokasi, dan foto\.
+5. Kirim Laporan — Laporan dikirim ke sistem\.
+6. Terima & Simpan — Sistem menerima dan menyimpan laporan\.
+7. Generate ID Laporan — Sistem membuat ID unik untuk laporan\.
+8. Update Dashboard — Dashboard diperbarui\.
+9. Terima ID Laporan — Pengguna menerima ID laporan\.
+10. Tunggu Verifikasi Admin → Relawan Siap — Pengguna menunggu hasil verifikasi\.
+
+#### <a id="_vfxdrmlzffl"></a>2\. Activity Diagram: Verifikasi Laporan
+
+Aktor: Petugas & Sistem
+
+Diagram ini menggambarkan proses verifikasi laporan bencana oleh petugas:
+
+1. Petugas Login — Petugas masuk ke sistem\.
+2. Lihat Daftar Laporan — Sistem menampilkan seluruh daftar laporan masuk\.
+3. Pilih Laporan — Petugas memilih laporan yang akan ditinjau; sistem menampilkan detail laporan\.
+4. Review Data Bencana — Petugas memeriksa kelengkapan dan kevalidan data\.
+	- Data Tidak Valid → Lanjut ke proses penolakan\.
+	- Data Valid → Sistem melakukan Validasi: Terverifikasi\.
+5. Tolak & Catat Alasan — Jika tidak valid, petugas menolak dan mencatat alasan penolakan\.
+6. Update Status Laporan — Sistem memperbarui status laporan \(diterima/ditolak\)\.
+7. Kelola Data Bencana — Petugas mengelola data bencana yang telah diverifikasi\.
+8. Kirim Notifikasi — Sistem mengirim notifikasi kepada pelapor\.
+9. Update Dashboard — Dashboard diperbarui sesuai status terbaru\.
+
+#### <a id="_iit37nodnkev"></a>3\. Activity Diagram: Daftar Relawan
+
+Aktor: Relawan & Sistem
+
+Diagram ini menggambarkan proses pendaftaran relawan baru:
+
+1. Buka Aplikasi — Relawan membuka aplikasi\.
+2. Cari Menu Daftar Relawan — Sistem menampilkan Form Registrasi\.
+3. Isi Data Pribadi \(Nama, NIK\) — Relawan mengisi data diri\.
+	- Data Tidak Lengkap → Kembali untuk melengkapi data\.
+	- Data Lengkap → Sistem menyimpan data relawan\.
+4. Pilih Keahlian \(Medis, Logistik, dll\.\) — Relawan memilih bidang keahlian\.
+5. Tentukan Ketersediaan Waktu — Relawan menentukan jadwal ketersediaan\.
+6. Buat Akun Relawan — Sistem membuat akun baru untuk relawan\.
+7. Verifikasi Berhasil?
+	- Tidak Berhasil → Tolak Pendaftaran\.
+	- Berhasil → Aktifkan Akun relawan\.
+8. Update Dashboard & Kirim Notifikasi — Sistem memperbarui dashboard dan mengirim notifikasi status\.
+9. Terima Notifikasi Status → Relawan Siap — Relawan menerima konfirmasi dan siap bertugas\.
+
+# <a id="_jvna018ipwso"></a>4\. PENGEMBANGAN SISTEM INFORMASI
+
+\[Farid: 15 & 16 April 2026 \- Progress 2\]
+
+Pengembangan Sistem Informasi Manajemen Kebencanaan \(SIMKEB\) dilakukan berdasarkan hasil analisis kebutuhan dan perancangan sistem yang telah disusun sebelumnya\. Tahapan pengembangan dilakukan secara sistematis agar sistem bisa berjalan sesuai dengan tujuan yang sudah diteteapkan, khususnya dalam mendukung koordinasi penanganan bencana secara terpadu antara petugas BPBD/BNPB, relawan, dan masyarakat umum\.
+
+## <a id="_8lur5pcc9erc"></a> Teknologi yang Digunakan
+
+Sistem dikembangkan menggunakan teknologi berbasis web agar dapat diakses melalui berbagai perangkat seperti komputer, tablet, dan smartphone tanpa perlu instalasi aplikasi tambahan\. Teknologi yang digunakan meliputi:
+
+1. Backend
+
+- Node\.js sebagai runtime environment untuk menjalankan logika server\.
+- Express\.js sebagai framework untuk membangun REST API\.
+- JWT \(JSON Web Token\) untuk autentikasi dan otorisasi berbasis token\.
+- Database MySQL
+
+1. Frontend
+
+- React\.js sebagai library untuk membangun antarmuka pengguna\.
+- Tailwind CSS untuk desain antarmuka yang responsif dan mobile friendly\.
+
+1. Tools Pengembangan
+
+- VS Code sebagai code editor\.
+- phpMyAdmin untuk manajemen database\.
+- Git untuk version control\.
+- Postman/Thunder Client untuk pengujian REST API\.
+- Google Chrome/Edge untuk pengujian sistem\.
+
+## <a id="_di0a4gvsczxm"></a> Implementasi Sistem
+
+Implementasi sistem mencakup pembangunan beberapa modul utama sebagai berikut:
+
+1. Modul Autentikasi
+
+- Login dan logout untuk pengguna terdaftar\.
+- Manajemen role \(Administrator, Petugas BPBD/BNPB, Relawan\)\.
+- Enkripsi password menggunakan hashing\.
+- Proteksi akses berbasis peran \(role\-based access control\)\.
+
+1. Modul Pelaporan Bencana oleh masyarakat
+
+- Formulir pelaporan bencana tanpa perlu login\.
+- Input data meliputi jenis bencana, lokasi, tingkat keparahan, dsb\.
+- Generate nomor ID laporan otomatis setelah laporan berhasil dikirim\.
+- Tampilan informasi bencana aktif secara realtime tanpa perlu login\.
+- Pengiriman Notifikasi ke petugas saat laporan masuk\.
+
+1. Modul Verifikasi dan Manajemen Bencana
+
+- Tampilan daftar laporan bencana mask dari masyarakat\.
+- Verifikasi laporan dan perubahan status \(Dilaporkan, Terverifikasi, Selesai\)\.
+- Notifikasi hasil verifikasi \(diterima/ditolak beserta alasan\) ke pelapor\.
+- Pengelolaan data korban dan pengungsi
+- Visualisasi lokasi bencana pada peta\.
+
+1. Modul Manajemen Posko dan Pengungsian
+
+- Pencatatan data posko pengungsian meliputi nama posko, kapasitas, dan jumlah pengungsi\.
+- Monitoring kapasitas posko secara terpusat\.
+- Visualisasi lokasi posko pada peta\.
+
+1. Modul Manajemen Logistik
+
+- Pencatatan stok bantuan
+- Validasi ketersediaan stok
+- Distribusi logistik ke posko tujuan
+- Rekap Distribusi Bantuan
+
+1. Modul Manajemen Relawan
+
+- Pendaftaran Relawan beserta data keahlian dan ketersediaan
+- Pengelolaan penugasan relawan sesuai lokasi bencana
+- Pembaruan status penugasan relawan \(standby, bertugas, selesai\)
+
+1. Modul Dashboard
+
+- Ringkasan situasi bencana aktif secara real\-time\.
+- Menampilkan jumlah bencana aktif, total pengungsi, jumlah posko, relawan aktif\.
+- Ekspor data ke format PDF atau Excel\.
+
+## <a id="_i4s5ppatuwcy"></a> Link Sistem dan Database 
+
+\[Farid: 29 April 2026 \- Progress 2\-3\]
+
+[LINK DATABASE](https://drive.google.com/file/d/16WyQXeBgEbkW4cnvOn5rgccFz76foujA/view?usp=drive_link)
+
+Bagian ini menjelaskan keterkaitan antara Sistem Informasi Manajemen Kebencanaan \(SIMKEB\) dengan basis data yang dirancang untuk mendukung seluruh operasional sistem\. Struktur basis data dijabarkan melalui penjelasan setiap entitas \(tabel\), atribut beserta tipe datanya, serta relasi antar tabel yang mencerminkan aturan bisnis sistem\.
+
+1. Link Repository dan Database
+
+Repository proyek SIMKEB dapat diakses melalui [GitHub](https://github.com/yahya-netizen/simkeb)\. File SQL basisdata bisa diakses juga di GitHub pada direktori \[backend/database/simkeb\_db\.sql\] ataupun di [Drive](https://drive.google.com/file/d/16WyQXeBgEbkW4cnvOn5rgccFz76foujA/view?usp=drive_link)\.
+
+1. Skema Basis Data
+
+Basis data SIMKEB dirancang menggunakan MySQL dengan pendekatan normalisasi untuk menghindari redundansi data dan menjaga integritas relasi antar tabel\. Sistem menggunaka pola pewarisan tabel \(tabel per subclass inheritance\) untuk  merepresentasikan hierarki kelas\. Basis Data SIMKEB terdiri dari 11 tabel utama, yaitu:
+
+- users
+- admins
+- petugas 
+- relawan 
+- masyarakat
+- laporan
+- bencana
+- korban
+- posko
+- logistik
+- penugasan\_relawan
+
+1. Relasi antar tabel
+
+Tabel Asal
+
+Jenis Relasi
+
+Tabel Tujuan
+
+Keterangan
+
+users
+
+admins
+
+users
+
+petugas
+
+users
+
+relawan
+
+users
+
+masyarakat
+
+users
+
+laporan
+
+1. aaaa
+
+## <a id="_sdgfd1ejclgz"></a> Interface Sistem Informasi \(Mockup\) Perancangan Dara \[16 April 2026/Progress 2\] \[30 April \- 1 Mei Progres 3\]
+
+Mockup ini dirancang untuk memastikan setiap fitur memiliki alur navigasi yang intuitif, responsif, dan mudah dipahami oleh masyarakat umum maupun petugas lapangan
+
+[Image]
+
+Gambar \.\. Halaman Daftar
+
+Antarmuka login dirancang dengan tampilan minimalis dan fungsional yang memungkinkan pengguna mengakses sistem menggunakan kredensial email atau nama pengguna, serta menyediakan opsi praktis untuk masuk melalui integrasi akun Google guna mempercepat aksesibilitas\.
+
+[Image]
+
+Gambar \.\. Halaman Masuk
+
+Halaman registrasi menyediakan formulir pendaftaran akun bagi pengguna baru yang mencakup input nama lengkap, email, nomor handphone aktif, dan pengaturan kata sandi untuk menjamin keamanan identitas serta validitas data pengguna dalam ekosistem SIMKEB\.
+
+[Image]
+
+Gambar \.\. Halaman Beranda \(Pengguna Masyarakat\)
+
+Halaman beranda SIMKEB menampilkan dasbor informatif yang menyajikan ringkasan statistik bencana nasional secara real\-time, seperti jumlah bencana aktif, total pengungsi, posisi posko, dan relawan yang bertugas, lengkap dengan daftar laporan terbaru yang dikelompokkan berdasarkan status urgensi\.
+
+[Image]
+
+Gambar \.\. Halaman Pantau Bencana \(Pengguna Masyarakat\)
+
+Halaman pemantauan ini menyajikan sebaran bencana di seluruh wilayah Indonesia yang dilengkapi dengan kartu informasi detail mengenai status operasional tiap kejadian, jumlah warga terdampak, dan kebutuhan relawan yang dapat difilter berdasarkan wilayah maupun tipe bencana\.
+
+[Image]
+
+Gambar \.\. Halaman Lapor \(Pengguna Masyarakat\)
+
+Fitur pelaporan ini menyediakan formulir terstruktur yang mencakup detail lokasi kejadian, pemilihan jenis bencana, penilaian tingkat keparahan, estimasi korban, deskripsi kondisi lapangan, serta unggahan dokumentasi foto untuk memberikan data akurat bagi tim penanggulangan\.
+
+	
+
+## <a id="_5th0e850tzcy"></a> Implementasi
+
+# <a id="_tzvjw1mj2fp6"></a>5\. PENGUJIAN SISTEM INFORMASI
+
+## <a id="_m1l4k855eyii"></a> Metode Pengujian
+
+## <a id="_m1lp80iw78zx"></a> Hasil Pengujian
+
+## <a id="_nz9mshuqyd4c"></a> Evaluasi Hasil
+
+# <a id="_46e5prncajzc"></a>DAFTAR PUSTAKA
+
+### <a id="_l6dqfvo4v6u9"></a>[Arifin, R\. W\. \(t\.t\.\)\. *Pemanfaatan Teknologi Informasi Dalam Penanggulangan Bencana Alam Di Indonesia Berbasiskan Web | BINA INSANI ICT JOURNAL*\. Diambil 8 April 2026, dari https://ejournal\-binainsani\.ac\.id/index\.php/BIICT/article/view/771 ](https://www.zotero.org/google-docs/?WyelNs)
+
+### <a id="_d9bqlm6wnz8b"></a>[Hakim, L\., Rochimah, S\., & Fatichah, C\. \(2019\)\. KLASIFIKASI KEBUTUHAN NON\-FUNGSIONAL MENGGUNAKAN FSKNN BERBASIS ISO/IEC 25010\. *JUTI: Jurnal Ilmiah Teknologi Informasi*, 107–116\. https://doi\.org/10\.12962/j24068535\.v17i2\.a823 ](https://www.zotero.org/google-docs/?WyelNs)
+
+### <a id="_d7yks738glrq"></a>[Prayesti, S\., Hadiana, A\. I\., & Umbara, F\. R\. \(2020\)\. Sistem Informasi Manajemen Penanggulangan Bencana Alam di Kabupaten Bandung Barat\. *Informatics and Digital Expert \(INDEX\)*, *2*\(1\)\. https://doi\.org/10\.36423/ide\.v2i1\.428 ](https://www.zotero.org/google-docs/?WyelNs)
+
+### <a id="_1sku1mk5ox9y"></a>[Warman, I\., & Ardila, A\. \(2022\)\. Sistem Informasi Mitigasi Rawan Bencana Kota Padang Berbasis Web—ArcGis\. *Explore: Jurnal Sistem Informasi dan Telematika \(Telekomunikasi, Multimedia dan Informatika\)*, *13*\(1\), 38–44\. https://doi\.org/10\.36448/jsit\.v13i1\.2536 ](https://www.zotero.org/google-docs/?WyelNs)
+
+### <a id="_u6we7th3h3hf"></a>[Yulianto, S\., Apriyadi, R\. K\., Aprilyanto, A\., Winugroho, T\., Ponangsera, I\. S\., & Wilopo, W\. \(2021a\)\. Histori Bencana dan Penanggulangannya di Indonesia Ditinjau Dari Perspektif Keamanan Nasional\. *PENDIPA Journal of Science Education*, *5*\(2\), 180–187\. https://doi\.org/10\.33369/pendipa\.5\.2\.180\-187 ](https://www.zotero.org/google-docs/?WyelNs)
+
+# <a id="_wwbyntpueekr"></a>
+
+# <a id="_iany6ytsw5oq"></a>
+
+# <a id="_224r3eemslr2"></a>DOKUMENTASI
+
+[Image]
+
+[Image]
+

@@ -2,6 +2,18 @@ const Logistik = require('../models/Logistik');
 const Bencana = require('../models/Bencana');
 const { Op } = require('sequelize');
 
+exports.getAllLogistik = async (req, res) => {
+  try {
+    const logistik = await Logistik.findAll({
+      include: [{ model: Bencana, attributes: ['nama_bencana'] }],
+      order: [['createdAt', 'DESC']]
+    });
+    res.json(logistik);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 exports.getLogistikByBencana = async (req, res) => {
   try {
     const logistik = await Logistik.findAll({

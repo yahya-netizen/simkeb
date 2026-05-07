@@ -1,122 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
+
+// Layouts
+import PublicLayout from './layouts/PublicLayout';
+import MainLayout from './layouts/MainLayout';
+
+// Components
+import ProtectedRoute from './component/ProtectedRoute';
+
+// Public Pages
+import Landing from './pages/public/Landing';
+import Login from './pages/public/Login';
+import StaffLogin from './pages/public/StaffLogin';
+import LaporBencana from './pages/public/LaporBencana';
+import DaftarRelawan from './pages/public/DaftarRelawan';
+
+// Admin Pages
+import Dashboard from './pages/admin/Dashboard';
+import Bencana from './pages/admin/Bencana';
+import Laporan from './pages/admin/Laporan';
+import Relawan from './pages/admin/Relawan';
+import Posko from './pages/admin/Posko';
+import Logistik from './pages/admin/Logistik';
+import DetailBencana from './pages/admin/DetailBencana';
+import UserManagement from './pages/admin/UserManagement';
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<PublicLayout />}>
+            <Route index element={<Landing />} />
+            <Route path="lapor" element={<LaporBencana />} />
+            <Route path="daftar-relawan" element={<DaftarRelawan />} />
+          </Route>
 
-      <div className="ticks"></div>
+          <Route path="/login" element={<Login />} />
+          <Route path="/login-petugas" element={<StaffLogin />} />
+{/* Protected Admin Routes */}
+<Route path="/admin" element={<ProtectedRoute allowedRoles={['admin', 'petugas', 'relawan']} />}>
+  <Route path="" element={<MainLayout />}>
+    <Route index element={<Dashboard />} />
+    <Route path="bencana" element={<Bencana />} />
+    <Route path="bencana/:id" element={<DetailBencana />} />
+    <Route path="laporan" element={<Laporan />} />
+    <Route path="posko" element={<Posko />} />
+    <Route path="relawan" element={<Relawan />} />
+    <Route path="logistik" element={<Logistik />} />
+    <Route path="penugasan" element={<Relawan />} />
+    <Route path="users" element={<UserManagement />} />
+  </Route>
+</Route>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          {/* 404 Redirect */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+      <Toaster position="top-right" />
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
