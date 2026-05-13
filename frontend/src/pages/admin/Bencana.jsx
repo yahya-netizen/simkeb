@@ -1,12 +1,14 @@
 import { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { AlertTriangle, Plus, Edit2, Info, Trash2, RefreshCcw } from 'lucide-react';
 import api from '../../services/api';
 import Button from '../../component/ui/Button';
 import Input from '../../component/ui/Input';
 import Card from '../../component/ui/Card';
 import Table from '../../component/ui/Table';
 import Modal from '../../component/ui/Modal';
+import { formatDate } from '../../utils/format';
 
 const Bencana = () => {
   const navigate = useNavigate();
@@ -65,8 +67,7 @@ const Bencana = () => {
 
   const openEdit = (row) => {
     setMode('edit');
-    const rowId = row.id_bencana ?? row.id ?? row._id ?? row.bencanaId ?? row.idBencana ?? null;
-    setSelectedId(rowId);
+    setSelectedId(row.id_bencana);
 
     setForm({
       nama_bencana: row.nama_bencana ?? '',
@@ -95,7 +96,6 @@ const Bencana = () => {
       setIsModalOpen(false);
       await refetch();
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error(e);
     } finally {
       setSubmitting(false);
@@ -103,99 +103,93 @@ const Bencana = () => {
   };
 
   const handleDelete = async (rowId) => {
-    const ok = window.confirm('Hapus data bencana ini?');
-    if (!ok) return;
-
+    if (!window.confirm('Hapus data bencana ini?')) return;
     try {
       await api.delete(`/bencana/${rowId}`);
       await refetch();
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error(e);
     }
   };
 
-  const formatRowId = (row) => row.id_bencana ?? row.id ?? row._id ?? row.bencanaId ?? row.idBencana;
-
   if (isLoading) {
     return (
-      <div className="animate-pulse space-y-4">
-        <div className="h-10 bg-slate-200 rounded-lg" />
-        <div className="h-64 bg-slate-200 rounded-lg" />
+      <div className="animate-pulse space-y-6">
+        <div className="h-20 bg-slate-100 rounded-xl border-2 border-slate-200" />
+        <div className="h-[500px] bg-slate-100 rounded-xl border-2 border-slate-200" />
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div className="space-y-6 animate-fade-in">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-6 rounded-xl shadow-sm border-2 border-slate-200">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Manajemen Bencana</h1>
-          <p className="text-slate-500">Kelola data kejadian bencana (admin/petugas).</p>
+          <h1 className="text-2xl font-extrabold text-slate-900">Manajemen Bencana</h1>
+          <p className="text-slate-500 font-medium mt-1">Kelola data kejadian bencana aktif dan historis.</p>
         </div>
-        <Button onClick={openCreate} className="bg-primary-500 hover:bg-primary-600">
-          Tambah Bencana
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button variant="outline" onClick={() => refetch()} className="bg-white">
+            <RefreshCcw size={16} className="mr-2" /> Refresh
+          </Button>
+          <Button onClick={openCreate} className="bg-primary-600 shadow-primary-600/20">
+            <Plus size={18} className="mr-2" /> Tambah Bencana
+          </Button>
+        </div>
       </div>
 
       <Card>
-        <Table headers={['ID', 'Nama', 'Jenis', 'Tingkat', 'Lokasi', 'Tanggal Kejadian', 'Aksi']}>
-          {(bencanaList || []).map((row) => {
-            const rowId = formatRowId(row);
-
-            return (
-              <tr key={rowId} className="text-slate-700">
-                <td className="px-6 py-3">{rowId}</td>
-                <td className="px-6 py-3 font-medium text-slate-900">{row.nama_bencana}</td>
-                <td className="px-6 py-3">{row.jenis}</td>
-                <td className="px-6 py-3">{row.tingkat_parah}</td>
-                <td className="px-6 py-3">{row.lokasi}</td>
-                <td className="px-6 py-3">
-                  {row.tanggal_kejadian ? String(row.tanggal_kejadian).slice(0, 10) : '-'}
-                </td>
-                <td className="px-6 py-3">
-                  <div className="flex flex-wrap gap-2">
-                    <Button size="sm" variant="outline" onClick={() => openEdit(row)}>
-                      Edit
-                    </Button>
-                    <Button size="sm" variant="ghost" onClick={() => navigate(`/admin/bencana/${rowId}`)}>
-                      Detail
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="danger"
-                      onClick={() => handleDelete(rowId)}
-                    >
-                      Hapus
-                    </Button>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
+        <Table headers={['Nama Bencana', 'Jenis', 'Tingkat', 'Lokasi', 'Tanggal Kejadian', 'Aksi']}>
+          {(bencanaList || []).map((row) => (
+            <tr key={row.id_bencana} className="hover:bg-slate-50/50 transition-colors">
+              <td className="px-6 py-4">
+                <div className="font-bold text-slate-900">{row.nama_bencana}</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter mt-0.5">#{row.id_bencana}</div>
+              </td>
+              <td className="px-6 py-4 text-sm font-medium text-slate-600">{row.jenis}</td>
+              <td className="px-6 py-4">
+                <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                  row.tingkat_parah === 'kritis' ? 'bg-red-100 text-red-700' :
+                  row.tingkat_parah === 'berat' ? 'bg-orange-100 text-orange-700' :
+                  row.tingkat_parah === 'sedang' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700'
+                }`}>
+                  {row.tingkat_parah}
+                </span>
+              </td>
+              <td className="px-6 py-4 text-sm font-medium text-slate-600">{row.lokasi}</td>
+              <td className="px-6 py-4 text-sm font-medium text-slate-500">
+                {formatDate(row.tanggal_kejadian)}
+              </td>
+              <td className="px-6 py-4">
+                <div className="flex items-center gap-2">
+                  <Button size="sm" variant="ghost" onClick={() => openEdit(row)} className="text-blue-600 hover:bg-blue-50">
+                    <Edit2 size={14} />
+                  </Button>
+                  <Button size="sm" variant="ghost" onClick={() => navigate(`/admin/bencana/${row.id_bencana}`)} className="text-primary-600 hover:bg-primary-50">
+                    <Info size={14} />
+                  </Button>
+                  <Button size="sm" variant="ghost" onClick={() => handleDelete(row.id_bencana)} className="text-red-600 hover:bg-red-50">
+                    <Trash2 size={14} />
+                  </Button>
+                </div>
+              </td>
+            </tr>
+          ))}
         </Table>
       </Card>
 
       <Modal
         isOpen={isModalOpen}
         onClose={() => !submitting && setIsModalOpen(false)}
-        title={mode === 'create' ? 'Tambah Bencana' : 'Edit Bencana'}
+        title={mode === 'create' ? 'Tambah Bencana Baru' : 'Edit Data Bencana'}
         footer={
           <>
-            <Button
-              variant="outline"
-              onClick={() => setIsModalOpen(false)}
-              disabled={submitting}
-            >
-              Batal
-            </Button>
-            <Button onClick={handleSubmit} isLoading={submitting}>
-              Simpan
-            </Button>
+            <Button variant="outline" onClick={() => setIsModalOpen(false)} disabled={submitting}>Batal</Button>
+            <Button onClick={handleSubmit} isLoading={submitting}>Simpan Data</Button>
           </>
         }
       >
-        <div className="space-y-4">
+        <div className="space-y-5">
           <Input
             label="Nama Bencana"
             value={form.nama_bencana}
@@ -204,34 +198,32 @@ const Bencana = () => {
             required
           />
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Jenis Bencana</label>
-            <select
-              className="flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-              value={form.jenis}
-              onChange={(e) => onChange('jenis', e.target.value)}
-            >
-              {jenisOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
-          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="space-y-1.5">
+              <label className="block text-sm font-bold text-slate-700">Jenis Bencana</label>
+              <select
+                className="w-full h-12 px-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-primary-500/50 appearance-none cursor-pointer"
+                value={form.jenis}
+                onChange={(e) => onChange('jenis', e.target.value)}
+              >
+                {jenisOptions.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Tingkat Keparahan</label>
-            <select
-              className="flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-              value={form.tingkat_parah}
-              onChange={(e) => onChange('tingkat_parah', e.target.value)}
-            >
-              {tingkatOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+            <div className="space-y-1.5">
+              <label className="block text-sm font-bold text-slate-700">Tingkat Keparahan</label>
+              <select
+                className="w-full h-12 px-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-primary-500/50 appearance-none cursor-pointer"
+                value={form.tingkat_parah}
+                onChange={(e) => onChange('tingkat_parah', e.target.value)}
+              >
+                {tingkatOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>{opt.label}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <Input
@@ -241,27 +233,28 @@ const Bencana = () => {
             placeholder="Contoh: Kabupaten X"
           />
 
-          <Input
-            label="Koordinat (opsional)"
-            value={form.koordinat}
-            onChange={(e) => onChange('koordinat', e.target.value)}
-            placeholder="Contoh: -7.123, 112.456"
-          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <Input
+              label="Koordinat"
+              value={form.koordinat}
+              onChange={(e) => onChange('koordinat', e.target.value)}
+              placeholder="-7.123, 112.456"
+            />
+            <Input
+              label="Tanggal Kejadian"
+              type="date"
+              value={form.tanggal_kejadian}
+              onChange={(e) => onChange('tanggal_kejadian', e.target.value)}
+            />
+          </div>
 
-          <Input
-            label="Tanggal Kejadian"
-            type="date"
-            value={form.tanggal_kejadian}
-            onChange={(e) => onChange('tanggal_kejadian', e.target.value)}
-          />
-
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Deskripsi</label>
+          <div className="space-y-1.5">
+            <label className="block text-sm font-bold text-slate-700">Deskripsi Kejadian</label>
             <textarea
-              className="flex min-h-[100px] w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+              className="w-full p-4 rounded-2xl border border-slate-100 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all resize-none h-32 font-medium"
               value={form.deskripsi}
               onChange={(e) => onChange('deskripsi', e.target.value)}
-              placeholder="Jelaskan kondisi/kejadian singkat..."
+              placeholder="Jelaskan kondisi singkat..."
             />
           </div>
         </div>

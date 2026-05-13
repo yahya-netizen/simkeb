@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Lock, User, UserPlus } from 'lucide-react';
+import { Heart, Lock, User, UserPlus, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../../services/api';
 import useAuthStore from '../../store/useAuthStore';
 import Button from '../../component/ui/Button';
 import Input from '../../component/ui/Input';
-import Card from '../../component/ui/Card';
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -37,62 +36,80 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-primary-50 p-4">
-      <Card className="w-full max-w-md shadow-xl border-primary-100">
-        <div className="text-center mb-8">
-          <div className="h-14 w-14 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Heart size={30} fill="currentColor" />
+    <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] p-4 relative overflow-hidden font-sans">
+      {/* Decorative background */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
+        <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-primary-200 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100 rounded-full blur-[120px]"></div>
+      </div>
+
+      <button 
+        onClick={() => navigate('/')}
+        className="absolute top-8 left-8 flex items-center gap-2 text-slate-500 hover:text-primary-600 font-bold text-sm transition-all active:scale-95 group"
+      >
+        <div className="h-10 w-10 bg-white shadow-sm border border-slate-100 rounded-xl flex items-center justify-center group-hover:bg-primary-50 group-hover:border-primary-100 transition-all">
+          <ArrowLeft size={18} />
+        </div>
+        Kembali
+      </button>
+
+      <div className="w-full max-w-md z-10 bg-white rounded-xl shadow-2xl p-10 border-4 border-slate-200 animate-fade-in">
+        <div className="text-center mb-10">
+          <div className="h-16 w-16 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center mx-auto mb-6 shadow-inner border-2 border-primary-200">
+            <Heart size={32} fill="currentColor" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Login Relawan</h2>
-          <p className="text-slate-500 mt-2">Masuk untuk melihat penugasan Anda</p>
+          <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2 uppercase italic">Portal Relawan</h2>
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Volunteer Access Point</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <Input
             label="Username Relawan"
-            placeholder="Masukkan username Anda"
+            placeholder="Username"
             value={formData.username}
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             required
             autoComplete="username"
-            icon={<User size={16} className="text-slate-400" />}
           />
           <Input
-            label="Password"
+            label="Password Akun"
             type="password"
-            placeholder="Masukkan password"
+            placeholder="••••••••"
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             required
             autoComplete="current-password"
-            icon={<Lock size={16} className="text-slate-400" />}
           />
-          <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white py-6" isLoading={loading}>
+          <Button 
+            type="submit" 
+            className="w-full h-14 bg-primary-600 hover:bg-primary-700 text-white font-black text-lg rounded-lg shadow-xl shadow-primary-500/20" 
+            isLoading={loading}
+          >
             Masuk Sekarang
           </Button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-slate-100 space-y-4">
-          <div className="text-center">
-             <p className="text-sm text-slate-500 mb-2">Belum terdaftar sebagai relawan?</p>
+        <div className="mt-10 pt-8 border-t-2 border-slate-100 space-y-6">
+          <div className="text-center bg-slate-100 p-6 rounded-lg border-2 border-slate-200">
+             <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Baru bergabung?</p>
              <Button 
                 variant="outline" 
-                className="w-full gap-2 border-primary-200 text-primary-700 hover:bg-primary-50"
+                className="w-full gap-2 border-2 border-primary-500 text-primary-700 bg-white hover:bg-primary-600 hover:text-white font-black py-4 rounded-lg shadow-lg"
                 onClick={() => navigate('/daftar-relawan')}
               >
                 <UserPlus size={18} />
-                Daftar Jadi Relawan
+                Daftar Relawan
               </Button>
           </div>
           
           <button 
             onClick={() => navigate('/login-petugas')} 
-            className="w-full text-slate-400 hover:text-slate-600 text-sm transition-colors"
+            className="w-full text-slate-500 hover:text-slate-900 font-black text-[10px] uppercase tracking-[0.2em] transition-all"
           >
-            Anda Petugas? Login di sini
+            Akses Petugas? Login di sini
           </button>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

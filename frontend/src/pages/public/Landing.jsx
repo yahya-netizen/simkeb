@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Shield, AlertCircle, Users, FileText, MapPin, Calendar, Activity, LogIn, ChevronRight } from 'lucide-react';
+import { Shield, AlertCircle, Users, FileText, MapPin, Calendar, Activity, LogIn, ChevronRight, Heart, Zap, Globe } from 'lucide-react';
 import api from '../../services/api';
 import Button from '../../component/ui/Button';
+import { formatDate } from '../../utils/format';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -15,191 +16,187 @@ const Landing = () => {
   });
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 font-sans">
-      {/* Hero Section with Premium Gradient */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-primary-950 py-24 sm:py-32">
-        {/* Background Decorative Elements */}
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-red-50 to-gray-50 font-sans">
+      {/* Emergency Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-red-950 to-red-900 py-24 sm:py-32 lg:py-40">
+        {/* Animated Disaster Background */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
-          <div className="absolute top-40 -left-40 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-        </div>
-
-        <div className="absolute top-0 right-0 p-6 z-10">
-           <button 
-            onClick={() => navigate('/login-petugas')}
-            className="flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors glass-panel px-4 py-2 rounded-full"
-           >
-             <Shield size={16} /> Portal Petugas
-           </button>
+          <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[60%] bg-red-600/15 rounded-full blur-[150px] animate-pulse"></div>
+          <div className="absolute bottom-[-15%] left-[-10%] w-[50%] h-[50%] bg-orange-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute inset-0 opacity-5" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel-dark text-primary-300 text-sm font-semibold mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-red-600/20 border-2 border-red-400/40 text-red-200 text-[11px] font-black uppercase tracking-[0.35em] mb-12 shadow-2xl backdrop-blur-sm">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-300"></span>
             </span>
-            Sistem Informasi Manajemen Kebencanaan
+            🚨 Emergency Response System 2.0
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-8 leading-tight">
-            Bersama Hadapi <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">
-              Bencana
+          <h1 className="text-6xl md:text-9xl font-black text-white tracking-tighter mb-8 leading-[0.9] uppercase drop-shadow-2xl" style={{fontFamily: 'Bebas Neue, sans-serif', letterSpacing: '0.08em'}}>
+            Respon Cepat <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-red-400 to-orange-400 animate-pulse-alert">
+              Aksi Nyata
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Platform terpadu untuk koordinasi penanganan bencana, pelaporan masyarakat secara real-time, dan manajemen logistik di wilayah Anda.
+          <p className="text-base md:text-lg text-red-100 max-w-3xl mx-auto mb-16 leading-relaxed font-bold uppercase text-[11px] tracking-[0.25em] opacity-90">
+            🌍 Platform Koordinasi Bencana Alam | ⚡ Pelaporan Real-time | 📦 Manajemen Logistik Cerdas
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 animate-slide-up">
             <button 
-              className="group relative inline-flex items-center justify-center gap-2 h-14 px-8 text-lg font-bold text-white bg-primary-600 rounded-xl overflow-hidden shadow-[0_0_40px_rgba(234,88,12,0.3)] transition-all hover:bg-primary-500 hover:scale-105 active:scale-95"
+              className="group relative inline-flex items-center justify-center gap-3 h-20 px-14 text-lg font-black uppercase tracking-widest text-white bg-gradient-to-b from-red-600 to-red-700 rounded-xl overflow-hidden shadow-2xl shadow-red-600/40 transition-all hover:from-red-500 hover:to-red-600 hover:scale-110 active:scale-95 border-b-4 border-red-800"
               onClick={() => navigate('/lapor')}
             >
-              <AlertCircle size={22} className="group-hover:animate-bounce" />
-              <span>Lapor Bencana</span>
-              <div className="absolute inset-0 h-full w-full scale-0 rounded-xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></div>
+              <AlertCircle size={32} className="group-hover:animate-bounce" />
+              <span>LAPOR BENCANA</span>
+              <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
             </button>
             
             <button 
-              className="inline-flex items-center justify-center gap-2 h-14 px-8 text-lg font-bold text-slate-900 bg-white rounded-xl shadow-lg transition-all hover:bg-slate-100 hover:scale-105 active:scale-95"
+              className="group inline-flex items-center justify-center gap-3 h-20 px-14 text-lg font-black uppercase tracking-widest text-white bg-white/10 border-2 border-white/30 rounded-xl shadow-xl backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/50 hover:scale-110 active:scale-95"
               onClick={() => navigate('/login')}
             >
-              <LogIn size={22} />
-              <span>Login Relawan</span>
+              <Heart size={32} className="text-red-300" />
+              <span>RELAWAN</span>
             </button>
-          </div>
-          
-          <div className="mt-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-             <button 
-              onClick={() => navigate('/daftar-relawan')} 
-              className="text-primary-300 font-medium hover:text-white transition-colors flex items-center justify-center gap-1 mx-auto"
-             >
-               Belum jadi relawan? Daftar di sini <ChevronRight size={16} />
-             </button>
           </div>
         </div>
       </section>
 
       {/* Situasi Terkini Section */}
-      <section className="py-24 relative z-20 -mt-10">
+      <section className="py-32 relative z-20 -mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass-panel bg-white/80 p-8 rounded-3xl shadow-xl border border-slate-100/50">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-4">
+          <div className="bg-white p-8 sm:p-16 rounded-2xl shadow-2xl border-4 border-red-200">
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-8 pb-8 border-b-4 border-red-100">
               <div>
-                <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Situasi Terkini</h2>
-                <p className="text-slate-500 mt-2 font-medium">Daftar kejadian bencana yang sedang ditangani saat ini.</p>
+                <h2 className="text-6xl md:text-7xl font-black text-red-900 uppercase tracking-tight" style={{fontFamily: 'Bebas Neue, sans-serif', letterSpacing: '0.08em'}}>Situasi Terkini</h2>
+                <p className="text-red-700 mt-3 font-black uppercase text-xs tracking-[0.35em]">⚠️ Laporan Bencana Aktif di Lapangan</p>
               </div>
-              <div className="flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full font-bold text-sm shadow-sm border border-red-100">
-                <Activity size={18} className="animate-pulse" />
+              <div className="flex items-center gap-3 bg-gradient-to-r from-red-50 to-orange-50 text-red-600 px-8 py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.25em] shadow-lg border-2 border-red-200 alert-pulse">
+                <Activity size={20} />
                 Live Update
               </div>
             </div>
 
             {isLoading ? (
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-3 gap-10">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="h-72 bg-slate-100 rounded-2xl animate-pulse border border-slate-200"></div>
+                  <div key={i} className="h-96 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl animate-pulse border-2 border-red-200"></div>
                 ))}
               </div>
             ) : bencanaAktif?.length > 0 ? (
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-3 gap-10">
                 {bencanaAktif.map(b => (
-                  <div key={b.id_bencana} className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:-translate-y-1 cursor-default relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400 to-primary-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                  <div key={b.id_bencana} className="group bg-gradient-to-br from-white to-red-50/30 rounded-2xl p-10 shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-red-200 hover:border-red-500 hover:-translate-y-3 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-red-200/20 rounded-bl-full -z-0 opacity-0 group-hover:opacity-100 transition-opacity blur-2xl"></div>
                     
-                    <div className="flex justify-between items-start mb-5">
-                      <span className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider ${
-                        b.tingkat_parah === 'kritis' ? 'bg-red-100 text-red-700 border border-red-200' :
-                        b.tingkat_parah === 'berat' ? 'bg-orange-100 text-orange-700 border border-orange-200' : 
-                        'bg-yellow-100 text-yellow-700 border border-yellow-200'
+                    <div className="flex justify-between items-start mb-10 relative z-10">
+                      <span className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] border-2 ${
+                        b.status === 'aktif' ? 'bg-red-100 text-red-800 border-red-300 animate-pulse-alert shadow-lg shadow-red-200/50' : 'bg-orange-100 text-orange-800 border-orange-300'
                       }`}>
-                        {b.tingkat_parah}
+                        {b.status}
                       </span>
-                      <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-md flex items-center gap-1">
-                        <Calendar size={12} /> {new Date(b.tanggal_kejadian).toLocaleDateString('id-ID')}
+                      <span className="text-[10px] font-black text-red-600 uppercase tracking-[0.2em] flex items-center gap-2">
+                        <Calendar size={16} /> {formatDate(b.tanggal_kejadian)}
                       </span>
                     </div>
                     
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-1 group-hover:text-primary-600 transition-colors">{b.nama_bencana}</h3>
+                    <h3 className="text-2xl md:text-3xl font-black text-red-900 mb-6 line-clamp-2 group-hover:text-red-700 transition-colors leading-tight uppercase tracking-tight" style={{fontFamily: 'Bebas Neue, sans-serif'}}>{b.nama_bencana}</h3>
                     
-                    <div className="space-y-3 mb-6">
-                      <p className="text-sm font-medium text-slate-600 flex items-start gap-2 bg-slate-50 p-2 rounded-lg">
-                        <MapPin size={16} className="text-primary-500 shrink-0 mt-0.5" /> 
-                        <span className="line-clamp-2">{b.lokasi}</span>
-                      </p>
-                      <p className="text-sm text-slate-500 line-clamp-2 italic leading-relaxed">"{b.deskripsi}"</p>
-                    </div>
-                    
-                    <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
-                      <div className="flex items-center gap-1.5 text-sm font-bold text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg">
-                        <Users size={16} className="text-blue-500"/> 
-                        <span>{b.Poskos?.length || 0} Posko</span>
+                    <div className="space-y-6 mb-10 relative z-10">
+                      <div className="flex items-start gap-3 bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg border-2 border-red-200">
+                        <AlertCircle size={20} className="text-red-600 shrink-0 mt-0.5" /> 
+                        <span className="text-sm font-black text-red-900 uppercase tracking-tight leading-tight">{b.lokasi}</span>
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="relative flex h-2.5 w-2.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                        </span>
-                        <span className="text-green-600 font-bold text-xs uppercase tracking-wider">Aktif</span>
+                      <p className="text-sm text-red-700 line-clamp-3 italic leading-relaxed font-bold uppercase text-[9px] tracking-[0.15em] opacity-80">"{b.deskripsi}"</p>
+                    </div>
+                    
+                    <div className="pt-8 border-t-4 border-red-200 flex justify-between items-center relative z-10">
+                      <div className="flex items-center gap-2 text-[10px] font-black text-red-900 bg-red-100 px-5 py-2.5 rounded-lg border-2 border-red-300 uppercase tracking-[0.2em] shadow-sm">
+                        <Users size={18} className="text-red-600"/> 
+                        <span>{b.Poskos?.length || 0} POSKO</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="h-3 w-3 rounded-full bg-red-600 animate-pulse-alert"></div>
+                        <span className="text-red-600 font-black text-[10px] uppercase tracking-[0.2em]">Active</span>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-24 bg-gradient-to-b from-slate-50 to-white rounded-3xl border border-slate-200">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-50 mb-6 shadow-inner border border-green-100">
-                  <Shield size={40} className="text-green-500" />
+              <div className="text-center py-40 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border-4 border-dashed border-green-300">
+                <div className="inline-flex items-center justify-center w-28 h-28 rounded-2xl bg-white mb-10 shadow-2xl border-2 border-green-300">
+                  <Shield size={56} className="text-emerald-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">Situasi Aman</h3>
-                <p className="text-slate-500 font-medium max-w-md mx-auto">Alhamdulillah, saat ini tidak ada bencana aktif yang dilaporkan di sistem kami.</p>
+                <h3 className="text-4xl font-black text-green-900 mb-4 tracking-tight uppercase" style={{fontFamily: 'Bebas Neue, sans-serif'}}>Situasi Terkendali</h3>
+                <p className="text-green-700 font-black uppercase text-xs tracking-[0.3em] max-w-md mx-auto leading-relaxed">✓ Saat ini tidak ada laporan bencana aktif</p>
               </div>
             )}
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20 bg-white">
+      {/* Features Section */}
+      <section className="py-32 bg-gradient-to-b from-white to-red-50 relative overflow-hidden border-t-4 border-red-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Kenapa Menggunakan SIMKEB?</h2>
-            <p className="text-slate-500 mt-4 max-w-2xl mx-auto">Platform dirancang khusus untuk mempermudah alur informasi dan tindakan pada saat situasi genting.</p>
+          <div className="text-center mb-24">
+            <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-red-600 mb-6">⚡ Keunggulan Sistem</h2>
+            <h2 className="text-6xl md:text-8xl font-black text-red-900 tracking-tight leading-none uppercase" style={{fontFamily: 'Bebas Neue, sans-serif', letterSpacing: '0.08em'}}>Manajemen Bencana</h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 relative">
-            {/* Connecting lines for desktop */}
-            <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-primary-100 via-primary-300 to-primary-100 -z-10 transform -translate-y-1/2"></div>
-            
-            <div className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 relative group hover:-translate-y-2 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <div className="h-16 w-16 bg-gradient-to-br from-primary-400 to-primary-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-primary-500/30 transform group-hover:rotate-6 transition-transform">
-                <FileText size={28} />
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { 
+                icon: Zap, 
+                title: 'Pelaporan Instan', 
+                desc: 'Laporan langsung ke komando pusat tanpa birokrasi. Kecepatan adalah kunci penyelamatan.',
+                color: 'from-red-600 to-red-700'
+              },
+              { 
+                icon: Globe, 
+                title: 'Respon Terpadu', 
+                desc: 'Data real-time relawan & petugas dalam satu peta. Koordinasi sempurna untuk efisiensi maksimal.',
+                color: 'from-orange-600 to-orange-700'
+              },
+              { 
+                icon: Shield, 
+                title: 'Verifikasi Data', 
+                desc: 'Validasi tim lapangan untuk akurasi data. Memastikan respons tepat sasaran dan efektif.',
+                color: 'from-red-700 to-red-800'
+              }
+            ].map((f, i) => (
+              <div key={i} className="group p-12 bg-white rounded-2xl border-4 border-red-200 hover:border-red-600 hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-red-200/10 to-transparent rounded-bl-full -z-0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className={`h-28 w-28 bg-gradient-to-br ${f.color} text-white rounded-2xl flex items-center justify-center mb-12 shadow-2xl shadow-red-600/30 transform group-hover:scale-110 group-hover:-rotate-6 transition-all border-4 border-white relative z-10`}>
+                  <f.icon size={56} />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-black mb-6 text-red-900 uppercase tracking-tight" style={{fontFamily: 'Bebas Neue, sans-serif'}}>{f.title}</h3>
+                <p className="text-red-700 leading-relaxed font-black text-xs uppercase tracking-[0.2em] opacity-80">{f.desc}</p>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-slate-900">Pelaporan Cepat</h3>
-              <p className="text-slate-600 leading-relaxed">Laporkan kejadian bencana di sekitar Anda secara langsung tanpa proses rumit. Informasi Anda menyelamatkan nyawa.</p>
-            </div>
-            
-            <div className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 relative group hover:-translate-y-2 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <div className="h-16 w-16 bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 transform group-hover:-rotate-6 transition-transform">
-                <Shield size={28} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-slate-900">Respon Terpadu</h3>
-              <p className="text-slate-600 leading-relaxed">Koordinasi tim petugas, relawan, dan distribusi logistik yang lebih efektif dalam satu komando digital terpusat.</p>
-            </div>
-            
-            <div className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 relative group hover:-translate-y-2 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <div className="h-16 w-16 bg-gradient-to-br from-emerald-400 to-emerald-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/30 transform group-hover:rotate-6 transition-transform">
-                <AlertCircle size={28} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-slate-900">Informasi Akurat</h3>
-              <p className="text-slate-600 leading-relaxed">Dapatkan data terkini yang telah terverifikasi mengenai status bencana, lokasi posko, dan penyaluran bantuan.</p>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-24 px-4 bg-gradient-to-b from-red-50 to-red-100">
+        <div className="max-w-6xl mx-auto bg-gradient-to-br from-red-900 via-red-950 to-red-900 rounded-2xl p-16 sm:p-32 text-center relative overflow-hidden shadow-2xl border-4 border-red-800">
+          <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+          <div className="relative z-10">
+            <h2 className="text-5xl sm:text-8xl font-black text-white mb-8 tracking-tight uppercase leading-tight" style={{fontFamily: 'Bebas Neue, sans-serif', letterSpacing: '0.08em'}}>Siap Membantu?</h2>
+            <p className="text-red-200 text-[11px] font-black uppercase tracking-[0.4em] mb-16">🤝 Bergabung dengan jaringan relawan nasional yang siap tanggap darurat</p>
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-b from-red-500 to-red-600 text-white hover:from-red-400 hover:to-red-500 h-24 px-24 rounded-2xl font-black text-2xl uppercase tracking-widest shadow-2xl shadow-red-600/40 transition-all border-b-4 border-red-800 hover:scale-110 active:scale-95"
+              onClick={() => navigate('/daftar-relawan')}
+            >
+              Gabung Sekarang
+            </Button>
           </div>
         </div>
       </section>

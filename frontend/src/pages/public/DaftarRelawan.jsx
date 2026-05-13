@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, UserPlus, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { UserPlus, ShieldCheck, CheckCircle2, ArrowLeft, Heart, User, Phone, Fingerprint, Briefcase } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../../services/api';
+import Button from '../../component/ui/Button';
+import Input from '../../component/ui/Input';
+import Card from '../../component/ui/Card';
 
 const DaftarRelawan = () => {
   const [formData, setFormData] = useState({
@@ -39,173 +42,187 @@ const DaftarRelawan = () => {
 
   if (successMode) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center py-12 px-4 animate-fade-in font-sans">
-        <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-xl text-center border border-slate-100">
-          <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 size={48} className="text-green-500 animate-slide-up" />
+      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center py-12 px-4 animate-fade-in font-sans">
+        <div className="max-w-md w-full bg-white p-12 rounded-xl shadow-2xl text-center border-2 border-slate-300">
+          <div className="w-28 h-28 bg-emerald-50 rounded-lg flex items-center justify-center mx-auto mb-8 shadow-inner border-2 border-emerald-100">
+            <CheckCircle2 size={56} className="text-emerald-500 animate-slide-up" />
           </div>
-          <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Pendaftaran Berhasil!</h2>
-          <p className="text-slate-600 mb-8 leading-relaxed">
-            Terima kasih telah bergabung menjadi pahlawan kemanusiaan. Akun relawan Anda telah aktif.
+          <h2 className="text-4xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Registered!</h2>
+          <p className="text-slate-500 mb-10 leading-relaxed font-bold uppercase text-xs tracking-widest">
+            Terima kasih telah mendedikasikan diri Anda. Akun relawan Anda telah berhasil dibuat. Silakan login untuk melihat penugasan.
           </p>
-          <button 
+          <Button 
             onClick={() => navigate('/login')}
-            className="w-full h-12 bg-primary-600 hover:bg-primary-500 text-white font-bold rounded-xl transition-all shadow-[0_4px_20px_rgba(234,88,12,0.3)] hover:-translate-y-1"
+            className="w-full h-16 bg-primary-600 hover:bg-primary-500 text-white font-black text-lg rounded-lg shadow-xl shadow-primary-500/30"
           >
-            Lanjut ke Halaman Login
-          </button>
+            Masuk ke Dashboard
+          </Button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 font-sans relative">
+    <div className="min-h-screen bg-[#F8FAFC] py-16 px-4 font-sans relative overflow-hidden">
       {/* Decorative background */}
-      <div className="absolute top-0 left-0 w-full h-80 sm:h-96 bg-primary-600 z-0 rounded-b-[40px] sm:rounded-b-[80px]"></div>
+      <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-blue-100 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary-100 rounded-full blur-[120px]"></div>
+      </div>
 
-      <div className="max-w-3xl mx-auto animate-fade-in relative z-10">
-        <div className="mb-10 text-center text-white pt-8">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 drop-shadow-md">Bergabung Menjadi Relawan</h1>
-          <p className="text-slate-300 max-w-2xl mx-auto text-lg font-medium">Bantu sesama dalam masa krisis. Daftarkan diri Anda ke dalam sistem koordinasi relawan terpusat.</p>
+      <div className="max-w-4xl mx-auto animate-fade-in relative z-10">
+        <div className="mb-12 flex flex-col items-center">
+          <button 
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 text-slate-500 hover:text-primary-600 font-bold text-sm mb-10 transition-all active:scale-95 group self-start"
+          >
+            <div className="h-10 w-10 bg-white shadow-sm border-2 border-slate-200 rounded-lg flex items-center justify-center group-hover:bg-primary-50 group-hover:border-primary-100 transition-all">
+              <ArrowLeft size={18} />
+            </div>
+            Kembali
+          </button>
+          
+          <div className="text-center">
+            <div className="h-20 w-20 bg-primary-600 text-white rounded-lg flex items-center justify-center mx-auto mb-8 shadow-2xl rotate-3 border-4 border-white">
+              <Heart size={40} fill="currentColor" />
+            </div>
+            <h1 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-none text-center uppercase">Registrasi Relawan</h1>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg font-bold uppercase text-xs tracking-[0.3em]">Bergabunglah dalam misi kemanusiaan terpadu.</p>
+          </div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 border border-slate-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10 opacity-50"></div>
-          
-          <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-5 mb-8 flex gap-4 animate-slide-up">
-            <ShieldCheck className="h-6 w-6 text-blue-600 shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-blue-900 text-sm mb-1">Keamanan Data Terjamin</h3>
-              <p className="text-sm text-blue-700 leading-relaxed">
-                Data Nomor Identitas Kependudukan (NIK) Anda dilindungi enkripsi end-to-end dan hanya digunakan untuk keperluan verifikasi identitas di lapangan.
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* Instructions Sidebar */}
+          <div className="lg:col-span-1 space-y-6">
+            <div className="bg-slate-950 text-white p-8 rounded-xl shadow-2xl relative overflow-hidden group border-2 border-slate-800">
+               <div className="relative z-10">
+                  <ShieldCheck className="h-12 w-12 text-primary-400 mb-6" />
+                  <h3 className="text-xl font-black mb-4 uppercase tracking-tighter">Privasi Data</h3>
+                  <p className="text-slate-400 text-xs leading-relaxed mb-6 font-bold uppercase tracking-widest opacity-80">
+                    NIK dan data pribadi Anda dilindungi sistem enkripsi mutakhir. Hanya digunakan untuk validasi resmi.
+                  </p>
+                  <ul className="space-y-4 text-[10px] font-black uppercase tracking-[0.2em] text-primary-300">
+                    <li className="flex items-center gap-2"><CheckCircle2 size={14}/> Verifikasi Identitas</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 size={14}/> Koordinasi Pusat</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 size={14}/> Respon Lapangan</li>
+                  </ul>
+               </div>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl border-2 border-slate-300 shadow-sm">
+               <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Butuh Bantuan?</p>
+               <p className="text-slate-600 text-xs font-black uppercase tracking-widest leading-none">Pusat Koordinasi:</p>
+               <p className="text-primary-600 text-xl font-black mt-2 tracking-tighter">0800-1-SIMKEB</p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-            <h3 className="text-lg font-extrabold text-slate-900 border-b border-slate-100 pb-2 mb-4">Informasi Akun</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="block text-sm font-bold text-slate-700">Username <span className="text-red-500">*</span></label>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Pilih username unik"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                  className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-bold text-slate-700">Password <span className="text-red-500">*</span></label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Gunakan password yang kuat"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium"
-                />
-              </div>
-            </div>
+          {/* Registration Form */}
+          <div className="lg:col-span-2">
+            <Card className="rounded-xl p-4 sm:p-10 border-2 border-slate-300 shadow-2xl">
+              <form onSubmit={handleSubmit} className="space-y-10">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 border-b-2 border-slate-100 pb-4">
+                    <div className="h-8 w-8 bg-slate-100 text-slate-900 rounded flex items-center justify-center font-black text-xs border-2 border-slate-200">01</div>
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Kredensial Akun</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Input
+                      label="Username"
+                      name="username"
+                      placeholder="Username unik"
+                      value={formData.username}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Input
+                      label="Password"
+                      type="password"
+                      name="password"
+                      placeholder="Min. 8 karakter"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
 
-            <h3 className="text-lg font-extrabold text-slate-900 border-b border-slate-100 pb-2 mb-4 mt-8">Identitas Pribadi</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="block text-sm font-bold text-slate-700">Nama Lengkap <span className="text-red-500">*</span></label>
-                <input
-                  type="text"
-                  name="nama_lengkap"
-                  placeholder="Sesuai KTP"
-                  value={formData.nama_lengkap}
-                  onChange={handleChange}
-                  required
-                  className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-bold text-slate-700">Nomor HP <span className="text-red-500">*</span></label>
-                <input
-                  type="text"
-                  name="no_hp"
-                  placeholder="Contoh: 081234567xxx"
-                  value={formData.no_hp}
-                  onChange={handleChange}
-                  required
-                  className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium"
-                />
-              </div>
-            </div>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                    <div className="h-8 w-8 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center font-black text-xs">02</div>
+                    <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Profil & Keahlian</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Input
+                      label="Nama Lengkap"
+                      name="nama_lengkap"
+                      placeholder="Sesuai KTP"
+                      value={formData.nama_lengkap}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Input
+                      label="Nomor WhatsApp"
+                      name="no_hp"
+                      placeholder="0812xxxx"
+                      value={formData.no_hp}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <Input
+                    label="Nomor Identitas (NIK)"
+                    name="no_identitas"
+                    placeholder="16 Digit NIK"
+                    value={formData.no_identitas}
+                    onChange={handleChange}
+                    required
+                  />
+                  <div className="space-y-2">
+                    <label className="block text-sm font-black text-slate-700 mb-1">Keahlian Utama</label>
+                    <select
+                      name="keahlian"
+                      value={formData.keahlian}
+                      onChange={handleChange}
+                      className="w-full h-14 px-6 rounded-2xl border border-slate-100 bg-slate-50 text-slate-900 font-bold focus:outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="rescue/p3k">⛑️ Rescue / P3K</option>
+                      <option value="tim dapur">🍳 Tim Dapur Umum</option>
+                      <option value="tim logistik">📦 Tim Logistik</option>
+                      <option value="psikolog">🧠 Psikolog / Trauma Healing</option>
+                      <option value="penghibur anak2">🧸 Penghibur Anak-anak</option>
+                      <option value="lainnya">✨ Lainnya...</option>
+                    </select>
+                  </div>
 
-            <div className="space-y-2">
-              <label className="block text-sm font-bold text-slate-700">Nomor Identitas (NIK) <span className="text-red-500">*</span></label>
-              <input
-                type="text"
-                name="no_identitas"
-                placeholder="16 digit NIK Anda"
-                value={formData.no_identitas}
-                onChange={handleChange}
-                required
-                className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium tracking-widest"
-              />
-            </div>
+                  {formData.keahlian === 'lainnya' && (
+                    <div className="animate-fade-in">
+                      <Input
+                        label="Sebutkan Keahlian Spesifik Anda"
+                        name="keahlian_lainnya"
+                        placeholder="Misal: Driver, Teknisi Listrik, dsb."
+                        value={formData.keahlian_lainnya}
+                        onChange={handleChange}
+                        required={formData.keahlian === 'lainnya'}
+                      />
+                    </div>
+                  )}
+                </div>
 
-            <div className="space-y-2">
-              <label className="block text-sm font-bold text-slate-700">Keahlian Khusus</label>
-              <select
-                name="keahlian"
-                value={formData.keahlian}
-                onChange={handleChange}
-                className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium appearance-none"
-              >
-                <option value="rescue/p3k">Rescue / P3K</option>
-                <option value="tim dapur">Tim Dapur Umum</option>
-                <option value="tim logistik">Tim Logistik</option>
-                <option value="psikolog">Psikolog / Trauma Healing</option>
-                <option value="penghibur anak2">Penghibur Anak-anak</option>
-                <option value="lainnya">Lainnya...</option>
-              </select>
-            </div>
-
-            {formData.keahlian === 'lainnya' && (
-              <div className="space-y-2 animate-fade-in">
-                <label className="block text-sm font-bold text-slate-700">Sebutkan Keahlian Anda <span className="text-red-500">*</span></label>
-                <input
-                  type="text"
-                  name="keahlian_lainnya"
-                  placeholder="Misal: Supir Truk, Pertukangan, Manajemen Data"
-                  value={formData.keahlian_lainnya}
-                  onChange={handleChange}
-                  required={formData.keahlian === 'lainnya'}
-                  className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium"
-                />
-              </div>
-            )}
-
-            <div className="pt-4">
-              <button 
-                type="submit" 
-                disabled={loading}
-                className={`w-full h-14 bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white font-extrabold text-lg rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.3)] transition-all flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
-              >
-                {loading ? (
-                  <div className="h-6 w-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                ) : (
-                  <>
-                    <UserPlus size={22} />
-                    Daftar Menjadi Relawan
-                  </>
-                )}
-              </button>
-            </div>
-
-            <p className="text-center text-sm text-slate-500 font-medium pt-4">
-              Sudah punya akun? <button type="button" onClick={() => navigate('/login')} className="text-primary-600 font-bold hover:text-primary-700 hover:underline">Login di sini</button>
-            </p>
-          </form>
+                <div className="pt-6">
+                  <Button 
+                    type="submit" 
+                    isLoading={loading}
+                    className="w-full h-16 bg-slate-950 text-white font-black text-xl rounded-2xl shadow-2xl shadow-slate-950/20 active:scale-95 transition-all"
+                  >
+                    Daftar Sebagai Relawan
+                  </Button>
+                  <p className="text-center text-sm text-slate-400 font-bold mt-6 uppercase tracking-tighter">
+                    Sudah terdaftar? <button type="button" onClick={() => navigate('/login')} className="text-primary-600 hover:text-primary-700 border-b-2 border-primary-600/20">Login di sini</button>
+                  </p>
+                </div>
+              </form>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

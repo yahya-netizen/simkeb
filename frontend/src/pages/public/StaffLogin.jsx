@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, Lock, User } from 'lucide-react';
+import { ShieldCheck, Lock, User, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../../services/api';
 import useAuthStore from '../../store/useAuthStore';
 import Button from '../../component/ui/Button';
 import Input from '../../component/ui/Input';
-import Card from '../../component/ui/Card';
 
 const StaffLogin = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -37,62 +36,65 @@ const StaffLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900 p-4 relative overflow-hidden font-sans">
-      {/* Decorative background */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-500 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500 rounded-full blur-[120px]"></div>
+    <div className="min-h-screen flex items-center justify-center bg-slate-950 p-4 relative overflow-hidden font-sans">
+      {/* Decorative background for authoritative feel */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none text-white">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-900 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-slate-800 rounded-full blur-[120px]"></div>
       </div>
 
-      <div className="w-full max-w-md z-10 bg-white rounded-3xl shadow-2xl p-8 border border-slate-100 animate-fade-in">
-        <div className="text-center mb-8">
-          <div className="h-16 w-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg">
-            <ShieldCheck size={36} />
+      <button 
+        onClick={() => navigate('/')}
+        className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-white font-bold text-sm transition-all active:scale-95 group"
+      >
+        <div className="h-10 w-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white/10 transition-all">
+          <ArrowLeft size={18} />
+        </div>
+        Kembali ke Beranda
+      </button>
+
+      <div className="w-full max-w-md z-10 bg-white rounded-xl shadow-2xl p-10 border-4 border-slate-400 animate-fade-in">
+        <div className="text-center mb-10">
+          <div className="h-20 w-20 bg-slate-900 text-white rounded-lg flex items-center justify-center mx-auto mb-6 shadow-2xl rotate-3 border-4 border-slate-800">
+            <ShieldCheck size={40} />
           </div>
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight mb-2">Portal Petugas</h2>
-          <p className="text-slate-500 font-medium">Gunakan akun resmi untuk akses manajemen sistem</p>
+          <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2 uppercase italic">Portal Petugas</h2>
+          <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Official System Access</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <Input
-            label="Username Petugas"
-            placeholder="Masukkan username"
+            label="Username Resmi"
+            placeholder="Username Petugas"
             value={formData.username}
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             required
             autoComplete="username"
-            icon={<User size={18} className="text-slate-400" />}
           />
           <Input
-            label="Password"
+            label="Password Keamanan"
             type="password"
-            placeholder="Masukkan password"
+            placeholder="••••••••"
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             required
             autoComplete="current-password"
-            icon={<Lock size={18} className="text-slate-400" />}
           />
-          <button 
+          <Button 
             type="submit" 
-            className={`w-full h-14 bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white font-extrabold text-lg rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.3)] transition-all flex items-center justify-center gap-2 mt-4 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
-            disabled={loading}
+            className="w-full h-14 bg-slate-950 hover:bg-black text-white font-black text-lg rounded-lg shadow-xl shadow-slate-950/20 uppercase tracking-widest border-2 border-slate-900" 
+            isLoading={loading}
           >
-            {loading ? (
-              <div className="h-6 w-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-            ) : (
-              'Masuk ke Dashboard'
-            )}
-          </button>
+            Masuk Sekarang
+          </Button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-          <button 
-            onClick={() => navigate('/')} 
-            className="text-slate-500 hover:text-slate-900 font-bold text-sm transition-colors"
-          >
-            Kembali ke Beranda
-          </button>
+        <div className="mt-10 pt-8 border-t-2 border-slate-100 text-center">
+           <div className="flex items-center justify-center gap-3 text-[9px] font-black text-slate-400 uppercase tracking-[0.3em]">
+             <div className="h-0.5 w-6 bg-slate-200"></div>
+             Security Protocol
+             <div className="h-0.5 w-6 bg-slate-200"></div>
+           </div>
         </div>
       </div>
     </div>
