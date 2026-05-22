@@ -9,7 +9,8 @@ import {
   HeartPulse,
   Skull,
   ArrowRight,
-  Clock
+  Clock,
+  Package
 } from 'lucide-react';
 import api from '../../services/api';
 import Card from '../../component/ui/Card';

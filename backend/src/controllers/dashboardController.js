@@ -1,9 +1,4 @@
-const Bencana = require('../models/Bencana');
-const Korban = require('../models/Korban');
-const Posko = require('../models/Posko');
-const Relawan = require('../models/Relawan');
-const Laporan = require('../models/Laporan');
-const sequelize = require('../config/database');
+const { Bencana, Korban, Posko, Relawan, Laporan, sequelize } = require('../models');
 
 exports.getRingkasan = async (req, res) => {
   try {

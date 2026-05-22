@@ -1,5 +1,4 @@
-const Logistik = require('../models/Logistik');
-const Bencana = require('../models/Bencana');
+const { Logistik, Bencana, sequelize } = require('../models');
 const { Op } = require('sequelize');
 
 exports.getAllLogistik = async (req, res) => {
@@ -28,7 +27,6 @@ exports.getLogistikByBencana = async (req, res) => {
 
 exports.getStokByBencana = async (req, res) => {
   try {
-    const sequelize = require('../config/database');
     const stok = await Logistik.findAll({
       where: { bencanaId: req.params.bencanaId },
       attributes: [

@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./User');
 
 const Laporan = sequelize.define('Laporan', {
   id_laporan: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -16,13 +15,7 @@ const Laporan = sequelize.define('Laporan', {
     defaultValue: 'dilaporkan' 
   },
   alasan_tolak: { type: DataTypes.TEXT },
-  petugasId: { 
-    type: DataTypes.INTEGER, 
-    allowNull: true,
-    references: { model: User, key: 'id' } 
-  },
+  petugasId: { type: DataTypes.INTEGER, allowNull: true },
 }, { tableName: 'laporan', timestamps: true });
-
-Laporan.belongsTo(User, { foreignKey: 'petugasId', as: 'petugas' });
 
 module.exports = Laporan;

@@ -1,5 +1,4 @@
-const Posko = require('../models/Posko');
-const Bencana = require('../models/Bencana');
+const { Posko, Bencana } = require('../models');
 
 exports.getAllPosko = async (req, res) => {
   try {

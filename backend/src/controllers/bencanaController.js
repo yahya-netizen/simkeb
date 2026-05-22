@@ -1,7 +1,4 @@
-const Bencana = require('../models/Bencana');
-const Korban = require('../models/Korban');
-const Posko = require('../models/Posko');
-const Logistik = require('../models/Logistik');
+const { Bencana, Korban, Posko, Logistik } = require('../models');
 
 exports.getBencanaAktif = async (req, res) => {
   try {
@@ -65,8 +62,10 @@ exports.updateBencana = async (req, res) => {
 
 exports.hapusBencana = async (req, res) => {
   try {
-    await Bencana.destroy({ where: { id_bencana: req.params.id } });
-    res.json({ message: 'Data bencana dihapus' });
+    const bencana = await Bencana.findByPk(req.params.id);
+    if (!bencana) return res.status(404).json({ message: 'Bencana tidak ditemukan' });
+    await bencana.destroy(); // soft delete karena paranoid: true pada model
+    res.json({ message: 'Data bencana dihapus (soft delete)' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
