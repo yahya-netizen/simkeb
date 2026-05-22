@@ -1,13 +1,19 @@
 
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
+
+// Pastikan folder uploads ada sebelum multer digunakan
+fs.mkdirSync(path.join(__dirname, '..', 'uploads', 'laporan'), { recursive: true });
+
 const syncDB = require('./config/syncDatabase');
 syncDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 // Routes
 app.use('/api/auth',     require('./routes/authRoutes'));

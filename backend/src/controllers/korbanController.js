@@ -1,5 +1,4 @@
-const Korban = require('../models/Korban');
-const Bencana = require('../models/Bencana');
+const { Korban, Bencana } = require('../models');
 
 exports.getKorbanByBencana = async (req, res) => {
   try {

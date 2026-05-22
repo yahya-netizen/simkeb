@@ -11,6 +11,6 @@ const Bencana = sequelize.define('Bencana', {
   deskripsi: { type: DataTypes.TEXT },
   tanggal_kejadian: { type: DataTypes.DATE, allowNull: false },
   status: { type: DataTypes.ENUM('aktif','ditangani','selesai'), defaultValue: 'aktif' },
-}, { tableName: 'bencana', timestamps: true });
+}, { tableName: 'bencana', timestamps: true, paranoid: true });
 
 module.exports = Bencana;

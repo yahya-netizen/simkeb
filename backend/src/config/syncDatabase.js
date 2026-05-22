@@ -1,15 +1,7 @@
 const sequelize = require('./database');
-require('../models/User');
-require('../models/Admin');
-require('../models/Petugas');
-require('../models/Relawan');
-require('../models/Masyarakat');
-require('../models/Laporan');
-require('../models/Bencana');
-require('../models/Korban');
-require('../models/Posko');
-require('../models/Logistik');
-require('../models/PenugasanRelawan');
+
+// Memuat semua model dan relasinya dari satu titik pusat
+require('../models');
 
 const syncDB = async () => {
   try {

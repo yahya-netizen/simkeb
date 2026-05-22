@@ -1,7 +1,4 @@
-const Relawan = require('../models/Relawan');
-const User = require('../models/User');
-const PenugasanRelawan = require('../models/PenugasanRelawan');
-const Bencana = require('../models/Bencana');
+const { Relawan, User, PenugasanRelawan, Bencana } = require('../models');
 const bcrypt = require('bcryptjs');
 
 exports.getAllRelawan = async (req, res) => {
